@@ -421,15 +421,19 @@
   }
 
   button, a, [role="button"], .cursor-pointer, [draggable="true"] {
-    cursor: pointer;
+    cursor: pointer !important;
   }
 
   [data-draggable="true"], .draggable {
-    cursor: grab;
+    cursor: grab !important;
   }
 
   [data-draggable="true"]:active, .draggable:active {
-    cursor: grabbing;
+    cursor: grabbing !important;
+  }
+
+  motion-button, motion-a {
+    cursor: pointer !important;
   }
 }
 

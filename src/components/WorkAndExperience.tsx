@@ -11,6 +11,8 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import clarityUxLogo from "figma:asset/f9b2ce6c302f2e7a43379cb888e019c508fa7b5c.png";
 import travelopiaLogo from "figma:asset/b8f9c4e7a5d6f2c1e8b3a7f4d9e2c6b1a5f8d3e7.png";
 import tcsLogo from "figma:asset/2490a4166cc0a0cbe72d6eeb76d4e3ad61ef5ed1.png";
+import aspireLogo from "figma:asset/8e9782470518844671a8e88c67411356ae45deaa.png";
+import fourSeasonsLogo from "figma:asset/67fa21b25981dc6bb9cbdab17b9608a05e1dca9c.png";
 
 // Helper function to make numbers and metrics bold in text
 const formatTextWithBoldNumbers = (text: string) => {
@@ -381,7 +383,7 @@ export function WorkAndExperience() {
         style={{ overflowX: "visible" }}
       >
         {/* Main Section Title */}
-        <div className="mb-12 text-center relative">
+        <div className="text-center relative" style={{ marginBottom: 'var(--spacing-6)' }}>
           <div
             className="inline-block bg-primary text-primary-foreground px-10 py-5 shadow-lg relative"
             style={{
@@ -404,7 +406,7 @@ export function WorkAndExperience() {
               className="font-display"
               style={{ fontSize: "var(--text-4xl)" }}
             >
-              Work Experience
+              Brands I have worked with
             </h1>
           </div>
         </div>
@@ -469,7 +471,12 @@ export function WorkAndExperience() {
                               : exp.company ===
                                   "TCS World Travel"
                                 ? tcsLogo
-                                : exp.image
+                                : exp.company === "Aspire"
+                                  ? aspireLogo
+                                  : exp.company ===
+                                      "Four Seasons"
+                                    ? fourSeasonsLogo
+                                    : exp.image
                         }
                         alt={`${exp.company} logo`}
                         className="object-cover"
@@ -477,13 +484,21 @@ export function WorkAndExperience() {
                           width: "180px",
                           height: "180px",
                           objectPosition: "left center",
-                          clipPath: "inset(0 15% 0 0)",
+                          clipPath:
+                            exp.company === "Aspire" ||
+                            exp.company === "Four Seasons"
+                              ? "none"
+                              : "inset(0 15% 0 0)",
                           backgroundColor:
-                            exp.company === "TCS World Travel"
+                            exp.company ===
+                              "TCS World Travel" ||
+                            exp.company === "Four Seasons"
                               ? "#000000"
                               : "transparent",
                           padding:
-                            exp.company === "TCS World Travel"
+                            exp.company ===
+                              "TCS World Travel" ||
+                            exp.company === "Four Seasons"
                               ? "var(--spacing-4)"
                               : "0",
                         }}

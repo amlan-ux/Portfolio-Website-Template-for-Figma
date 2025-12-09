@@ -251,18 +251,24 @@
   [role="button"],
   .cursor-pointer,
   [draggable="true"] {
-    cursor: pointer;
+    cursor: pointer !important;
   }
 
   /* Grab cursor for draggable elements */
   [data-draggable="true"],
   .draggable {
-    cursor: grab;
+    cursor: grab !important;
   }
 
   [data-draggable="true"]:active,
   .draggable:active {
-    cursor: grabbing;
+    cursor: grabbing !important;
+  }
+  
+  /* Ensure motion components also get proper cursors */
+  motion-button,
+  motion-a {
+    cursor: pointer !important;
   }
 }
 

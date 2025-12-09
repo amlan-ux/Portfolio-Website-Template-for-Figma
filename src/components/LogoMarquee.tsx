@@ -17,7 +17,7 @@ import mongodbLogoImg from 'figma:asset/7aa4af4a64dd7b369357137bc73e090d6d9f1a0e
 import awsLogoImg from 'figma:asset/f5747417dbb013269a2014bfe7e551e8a8f21dcb.png';
 import asanaLogoImg from 'figma:asset/ef4e3ffa17f7511259966e63e31daf65ee52d937.png';
 import ionicLogoImg from 'figma:asset/6cc86ca29ba8ff76775864133d29901e575dea7f.png';
-import boltLogoImg from 'figma:asset/2e2c60a4aba29e858e57eb1ceee9a4e1aee229f7.png';
+import boltLogoImg from 'figma:asset/11f4a435d30bd62f718411cdc00869eedccace27.png';
 import figmaMakeLogoImg from 'figma:asset/f3299df80ee44cebcad1545f7fe891a8049cebb4.png';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 

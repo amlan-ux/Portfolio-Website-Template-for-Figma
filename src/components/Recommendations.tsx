@@ -2,6 +2,7 @@ import { Quote, Star, Heart, Sparkles, ChevronLeft, ChevronRight } from 'lucide-
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import aspireLogo from "figma:asset/8e9782470518844671a8e88c67411356ae45deaa.png";
 
 export function Recommendations() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -50,7 +51,7 @@ export function Recommendations() {
       color: 'white',
       rotation: 2,
       photo: "https://images.unsplash.com/photo-1618591552964-837a5a315fb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHByb2Zlc3Npb25hbCUyMG1hbGV8ZW58MXx8fHwxNzY1MjQ4MjMyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      companyLogo: "https://images.unsplash.com/photo-1570566920413-fd6410fec24c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc3BpcmUlMjBmaW50ZWNoJTIwbG9nb3xlbnwxfHx8fDE3NjUzMDM0Njl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+      companyLogo: aspireLogo
     },
     {
       name: "Hammad Jilani",
@@ -235,7 +236,7 @@ export function Recommendations() {
                 {getVisibleSlides().map((rec, index) => (
                   <motion.a
                     key={`${currentIndex}-${index}`}
-                    href="https://www.linkedin.com/in/amlanmukerjee/details/recommendations/"
+                    href="https://www.linkedin.com/in/amlanmukerjee/"
                     target="_blank"
                     rel="noopener noreferrer"
                     initial={{ opacity: 0, x: 100 }}
@@ -317,7 +318,7 @@ export function Recommendations() {
                         <div 
                           className="font-cursive mb-1" 
                           style={{ 
-                            fontSize: 'var(--text-lg)',
+                            fontSize: 'var(--text-xl)',
                             color: 'var(--color-foreground)'
                           }}
                         >

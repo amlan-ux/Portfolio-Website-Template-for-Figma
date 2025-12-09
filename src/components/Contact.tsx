@@ -269,7 +269,7 @@ export function Contact() {
                 Connect with me:
               </span>
               {[
-                { icon: Linkedin, href: 'https://linkedin.com/in/amlan-mukerjee', label: 'LinkedIn', color: 'var(--color-linkedin)', iconColor: 'var(--color-primary)' },
+                { icon: Linkedin, href: 'https://www.linkedin.com/in/amlanmukerjee/', label: 'LinkedIn', color: 'var(--color-linkedin)', iconColor: 'var(--color-primary)' },
                 { icon: Github, href: 'https://github.com/yourusername', label: 'GitHub', color: 'var(--color-secondary)', iconColor: 'var(--color-secondary-foreground)' },
                 { icon: Twitter, href: 'https://twitter.com/yourusername', label: 'Twitter', color: 'var(--color-chart-2)', iconColor: 'var(--color-secondary-foreground)' },
                 { icon: Globe, href: 'https://clarityux.ai', label: 'Website', color: 'var(--color-chart-4)', iconColor: 'var(--color-secondary-foreground)' }
