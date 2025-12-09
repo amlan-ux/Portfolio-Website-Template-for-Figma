@@ -1,0 +1,414 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400..700&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  /* The default background color for the application. */
+  --background: rgba(245, 245, 245, 1.00);
+  /* The default color for elements or text that appears on top of the background. */
+  --foreground: rgba(0, 0, 0, 1.00);
+  /* The background color for cards, modals, and other containers. */
+  --card: rgba(255, 255, 255, 1.00);
+  /* The default color for text or elements that appear on top of cards, modals and other background containers. */
+  --card-foreground: rgba(0, 0, 0, 1.00);
+  /* The background color for dropdowns and tooltips. */
+  --popover: rgba(255, 255, 255, 1.00);
+  /* The default color for text or elements that appear on top of dropdowns and tooltips. */
+  --popover-foreground: rgba(0, 0, 0, 1.00);
+  /* The primary color used for buttons, links, and other interactive elements. */
+  --primary: rgba(0, 0, 0, 1.00);
+  /* The default color for text or elements that appear on top of primary colored elements. */
+  --primary-foreground: rgba(255, 255, 255, 1.00);
+  /* The secondary color used for secondary(but NOT-DESTRUCTIVE) buttons and interactive elements. */
+  --secondary: rgba(13, 170, 89, 1.00);
+  /* The default color for text or elements that appear on top of secondary colored elements. */
+  --secondary-foreground: rgba(255, 255, 255, 1.00);
+  /* The muted color used for less prominent elements, such as disabled buttons or disabled text. */
+  --muted: rgba(97, 97, 97, 1.00);
+  /* The default color for text or elements that appear on top of muted colored elements. */
+  --muted-foreground: rgba(158, 158, 158, 1.00);
+  /* The accent color used for highlights, links, and other interactive elements. */
+  --accent: rgba(255, 199, 4, 1.00);
+  /* The default color for text or elements that appear on top of accent colored elements. */
+  --accent-foreground: rgba(0, 0, 0, 1.00);
+  /* The color used for background in destructive actions, such as delete buttons or error messages. */
+  --destructive: rgba(242, 48, 48, 1.00);
+  /* The default color for text or elements that appear on top of destructive colored elements. */
+  --destructive-foreground: rgba(255, 255, 255, 1.00);
+  /* The default border color for elements such as inputs, buttons, and other containers. */
+  --border: rgba(0, 0, 0, 1.00);
+  /* The default background color for input fields once the text has been filled. Should be either transparent or match the input-background. */
+  --input: rgba(0, 0, 0, 0);
+  /* The default background color for input fields, text areas, and other input elements. */
+  --input-background: rgba(255, 255, 255, 1.00);
+  /* The default font weight for medium text. */
+  --font-weight-medium: 500;
+  /* The default font weight for normal text. */
+  --font-weight-normal: 400;
+  /* The default font weight for bold text. */
+  --font-weight-bold: 700;
+  /* The color for focus rings, outlines, and other focus indicators. */
+  --ring: rgba(0, 0, 0, 1.00);
+  /* Shadow for small elevations, such as cards or modals. */
+  --elevation-sm: 0px 2px 4px 0px rgba(0,0,0,0.15);
+  /* Drop shadow filters for elevated elements */
+  --drop-shadow-sm: drop-shadow(2px 3px 6px rgba(0,0,0,0.2));
+  --drop-shadow-md: drop-shadow(3px 4px 8px rgba(0,0,0,0.2));
+  --drop-shadow-md-alt: drop-shadow(3px 4px 7px rgba(0,0,0,0.2));
+  --drop-shadow-md-dark: drop-shadow(3px 4px 8px rgba(0,0,0,0.25));
+  --drop-shadow-lg: drop-shadow(4px 5px 10px rgba(0,0,0,0.2));
+  --drop-shadow-lg-alt: drop-shadow(4px 5px 10px rgba(0,0,0,0.22));
+  --drop-shadow-lg-dark: drop-shadow(4px 5px 10px rgba(0,0,0,0.25));
+  --drop-shadow-xl: drop-shadow(5px 6px 12px rgba(0,0,0,0.25));
+  --drop-shadow-2xl: drop-shadow(6px 7px 15px rgba(0,0,0,0.2));
+  --drop-shadow-2xl-dark: drop-shadow(6px 7px 15px rgba(0,0,0,0.3));
+  /* The color for chart elements, such as a bar or line in a chart. */
+  --chart-1: rgba(0, 0, 0, 1.00);
+  /* The color for another chart element, such as a bar or line in a chart. */
+  --chart-2: rgba(13, 170, 89, 1.00);
+  /* The color for another chart element, such as a bar or line in a chart. */
+  --chart-3: rgba(255, 52, 121, 1.00);
+  /* The color for another chart element, such as a bar or line in a chart. */
+  --chart-4: rgba(242, 116, 48, 1.00);
+  /* The color for another chart element, such as a bar or line in a chart. */
+  --chart-5: rgba(32, 78, 207, 1.00);
+  /* The yellow accent color from ClarityUX branding */
+  --yellow: rgba(255, 199, 4, 1.00);
+  /* LinkedIn brand color */
+  --linkedin: rgba(105, 155, 247, 1.00);
+  /* Company brand colors for experience cards */
+  --company-aspire: rgba(12, 54, 90, 1.00);
+  --company-four-seasons: rgba(0, 0, 0, 1.00);
+  --company-outskill: rgba(18, 18, 18, 1.00);
+  --company-signeasy: rgba(16, 139, 231, 1.00);
+  --company-tcs: rgba(0, 0, 0, 1.00);
+  --company-furlenco: rgba(34, 32, 56, 1.00);
+  --company-practo: rgba(40, 50, 140, 1.00);
+  --company-invygo: rgba(0, 33, 51, 1.00);
+  --company-linkedin-card: rgba(0, 119, 181, 1.00);
+  /* The default border radius for elements such as buttons, tooltip, and other containers. */
+  --radius: 8px;
+  /* The border radius for cards and larger containers. */
+  --radius-card: 16px;
+  /* Typography scale variables */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 16px;
+  --text-xl: 36px;
+  --text-2xl: 48px;
+  --text-3xl: 60px;
+  
+  /* Font families for varied typography */
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
+  --font-handwritten: 'Kalam', cursive;
+  --font-cursive: 'Edu NSW ACT Foundation', cursive;
+  --font-bold: 'Space Grotesk', sans-serif;
+  
+  /* The background color for sidebars, navigation menus, and other persistent elements. */
+  --sidebar: rgba(255, 255, 255, 1.00);
+  /* The default color for text or elements that appear on top of sidebars, navigation menus, and other persistent elements. */
+  --sidebar-foreground: rgba(0, 0, 0, 1.00);
+  /* The primary color used for buttons, links, and other interactive elements in sidebars and navigation menus. */
+  --sidebar-primary: rgba(255, 255, 255, 1.00);
+  /* The default color for text or elements that appear on top of primary colored elements in sidebars and navigation menus. */
+  --sidebar-primary-foreground: rgba(0, 0, 0, 1.00);
+  /* The accent color used for highlights, links, and other interactive elements in sidebars and navigation menus. */
+  --sidebar-accent: rgba(255, 199, 4, 1.00);
+  /* The default color for text or elements that appear on top of accent colored elements in sidebars and navigation menus. */
+  --sidebar-accent-foreground: rgba(0, 0, 0, 1.00);
+  /* The default border color for elements in sidebars and navigation menus. */
+  --sidebar-border: rgba(97, 97, 97, 1.00);
+  /* The default color for focus rings, outlines, and other focus indicators in sidebars and navigation menus. */
+  --sidebar-ring: rgba(0, 0, 0, 1.00);
+}
+
+.dark {
+  --background: rgba(33, 33, 33, 1.00);
+  --foreground: rgba(255, 255, 255, 1.00);
+  --card: rgba(66, 66, 66, 1.00);
+  --card-foreground: rgba(255, 255, 255, 1.00);
+  --popover: rgba(66, 66, 66, 1.00);
+  --popover-foreground: rgba(255, 255, 255, 1.00);
+  --primary: rgba(255, 255, 255, 1.00);
+  --primary-foreground: rgba(0, 0, 0, 1.00);
+  --secondary: rgba(13, 170, 89, 1.00);
+  --secondary-foreground: rgba(255, 255, 255, 1.00);
+  --muted: rgba(97, 97, 97, 1.00);
+  --muted-foreground: rgba(158, 158, 158, 1.00);
+  --accent: rgba(255, 52, 121, 1.00);
+  --accent-foreground: rgba(255, 255, 255, 1.00);
+  --destructive: rgba(242, 48, 48, 1.00);
+  --destructive-foreground: rgba(255, 255, 255, 1.00);
+  --border: rgba(97, 97, 97, 1.00);
+  --input: rgba(97, 97, 97, 1.00);
+  --ring: rgba(158, 158, 158, 1.00);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+  --chart-1: rgba(255, 255, 255, 1.00);
+  --chart-2: rgba(13, 170, 89, 1.00);
+  --chart-3: rgba(255, 52, 121, 1.00);
+  --chart-4: rgba(242, 116, 48, 1.00);
+  --chart-5: rgba(32, 78, 207, 1.00);
+  --sidebar: rgba(66, 66, 66, 1.00);
+  --sidebar-foreground: rgba(255, 255, 255, 1.00);
+  --sidebar-primary: rgba(255, 255, 255, 1.00);
+  --sidebar-primary-foreground: rgba(0, 0, 0, 1.00);
+  --sidebar-accent: rgba(255, 52, 121, 1.00);
+  --sidebar-accent-foreground: rgba(255, 255, 255, 1.00);
+  --sidebar-border: rgba(97, 97, 97, 1.00);
+  --sidebar-ring: rgba(158, 158, 158, 1.00);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-yellow: var(--yellow);
+  --color-linkedin: var(--linkedin);
+  --color-company-aspire: var(--company-aspire);
+  --color-company-four-seasons: var(--company-four-seasons);
+  --color-company-outskill: var(--company-outskill);
+  --color-company-signeasy: var(--company-signeasy);
+  --color-company-tcs: var(--company-tcs);
+  --color-company-furlenco: var(--company-furlenco);
+  --color-company-practo: var(--company-practo);
+  --color-company-invygo: var(--company-invygo);
+  --color-company-linkedin-card: var(--company-linkedin-card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-card: var(--radius-card);
+  --shadow-sm: var(--elevation-sm);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    position: relative;
+    overflow-x: hidden;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.15) 1.5px, transparent 1.5px);
+    background-size: 30px 30px;
+  }
+
+  /* Figma-style cursors for interactive elements */
+  button,
+  a,
+  [role="button"],
+  .cursor-pointer,
+  [draggable="true"] {
+    cursor: pointer;
+  }
+
+  /* Grab cursor for draggable elements */
+  [data-draggable="true"],
+  .draggable {
+    cursor: grab;
+  }
+
+  [data-draggable="true"]:active,
+  .draggable:active {
+    cursor: grabbing;
+  }
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.5;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.5;
+}
+
+h3 {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.5;
+}
+
+h4 {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.5;
+}
+
+p {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5;
+}
+
+span {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5;
+}
+
+label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
+}
+
+button {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.5;
+}
+
+input {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
+}
+
+html {
+  font-size: var(--font-size);
+  font-family: var(--font-body);
+}
+
+/* Utility classes for varied typography */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.font-handwritten {
+  font-family: var(--font-handwritten);
+}
+
+.font-cursive {
+  font-family: var(--font-cursive);
+}
+
+.font-bold {
+  font-family: var(--font-bold);
+}
+
+/* CD Player Animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Logo Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Grid Movement Animations */
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(2px, -3px);
+  }
+  50% {
+    transform: translate(-1px, 2px);
+  }
+  75% {
+    transform: translate(3px, 1px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes floatPattern {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(10px, -15px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-5px, 10px) rotate(-0.5deg);
+  }
+  75% {
+    transform: translate(15px, 5px) rotate(0.5deg);
+  }
+}
