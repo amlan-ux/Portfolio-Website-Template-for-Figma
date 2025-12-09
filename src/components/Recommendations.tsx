@@ -9,6 +9,28 @@ export function Recommendations() {
 
   const recommendations = [
     {
+      name: "Rahul Jha",
+      title: "Product Designer at Travelopia",
+      date: "November 4, 2025",
+      relationship: "reported directly to Amlan",
+      quote: "Working with Amlan at Travelopia has been one of the best parts of my design journey. From day one, he trusted me, guided me, and pushed me to think beyond what I thought I was capable of. Amlan is spontaneous, brutally honest in the best way, and has this rare ability to 'say it like it is' … something that makes him such a strong and dependable leader. Every feedback session with him left me with something to learn (and usually a good laugh too). He's not just a great manager but a true mentor who's helped me grow both as a designer and as a person. Super grateful for all the support, guidance, and those honest one-liners that kept me grounded.",
+      color: 'white',
+      rotation: 1.8,
+      photo: "https://images.unsplash.com/photo-1581977325979-80749e97b0c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMGRlc2lnbmVyJTIwcHJvZmVzc2lvbmFsJTIwcG9ydHJhaXR8ZW58MXx8fHwxNzY1MzA0MjIzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      companyLogo: "https://images.unsplash.com/photo-1688678995154-454f3be41309?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cmF2ZWwlMjBhZ2VuY3klMjBicmFuZHxlbnwxfHx8fDE3NjUzMDQyMjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+    },
+    {
+      name: "Manasa Rao",
+      title: "Product Designer at Travelopia",
+      date: "November 3, 2025",
+      relationship: "reported directly to Amlan",
+      quote: "I had the opportunity to work under Amlan as my Design Manager, and it was an extremely valuable experience. He is an excellent problem solver who always encouraged our team to perform at our best while genuinely recognizing and appreciating our efforts. That balance of high expectations and genuine appreciation made working with him both inspiring and motivating. I learned a great deal from him — especially about being assertive, taking initiative, and approaching problems with solution-first mindset. His leadership and mentorship has had a lasting impact on my professional growth.",
+      color: 'white',
+      rotation: -1.8,
+      photo: "https://images.unsplash.com/photo-1616444493079-c71a6f0062b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmZW1hbGUlMjBkZXNpZ25lciUyMHByb2Zlc3Npb25hbCUyMGhlYWRzaG90fGVufDF8fHx8MTc2NTMwNDIyM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      companyLogo: "https://images.unsplash.com/photo-1688678995154-454f3be41309?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cmF2ZWwlMjBhZ2VuY3klMjBicmFuZHxlbnwxfHx8fDE3NjUzMDQyMjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+    },
+    {
       name: "Venkat ChandraGowri",
       title: "Products & Delivery Management",
       date: "November 3, 2025",
@@ -268,7 +290,7 @@ export function Recommendations() {
                         lineHeight: '1.6'
                       }}
                     >
-                      "{rec.quote}"
+                      {rec.quote}
                     </p>
 
                     {/* Author info with photo */}
@@ -295,7 +317,7 @@ export function Recommendations() {
                         <div 
                           className="font-cursive mb-1" 
                           style={{ 
-                            fontSize: 'var(--text-base)',
+                            fontSize: 'var(--text-lg)',
                             color: 'var(--color-foreground)'
                           }}
                         >
@@ -310,18 +332,7 @@ export function Recommendations() {
                         >
                           {rec.title}
                         </div>
-                        {rec.relationship && (
-                          <div 
-                            className="font-handwritten mt-2" 
-                            style={{ 
-                              fontSize: 'var(--text-xs)',
-                              color: 'var(--color-foreground)',
-                              opacity: 0.7
-                            }}
-                          >
-                            {rec.relationship}
-                          </div>
-                        )}
+                        {/* Removed relationship div */}
                       </div>
                     </div>
 

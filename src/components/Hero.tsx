@@ -786,7 +786,7 @@ export function Hero() {
                     className="text-primary-foreground mb-2"
                     style={{
                       fontSize: "var(--text-2xl)",
-                      lineHeight: "1.25",
+                      lineHeight: "1.2",
                       fontWeight: "800",
                     }}
                   >
@@ -2272,6 +2272,48 @@ export function Hero() {
           R
         </motion.kbd>
       </motion.button>
+
+      {/* Animated Scroll Indicator */}
+      <motion.div
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        style={{
+          zIndex: 50,
+        }}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2, duration: 0.8 }}
+      >
+        <motion.div
+          className="flex flex-col items-center"
+          animate={{ y: [0, 8, 0] }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          {/* Mouse Icon */}
+          <div
+            className="relative w-6 h-10 border-2 border-foreground/40 flex items-start justify-center pt-2"
+            style={{
+              borderRadius: "12px",
+            }}
+          >
+            <motion.div
+              className="w-1 h-2 bg-foreground/40"
+              style={{
+                borderRadius: "2px",
+              }}
+              animate={{ y: [0, 8, 0], opacity: [1, 0.3, 1] }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
