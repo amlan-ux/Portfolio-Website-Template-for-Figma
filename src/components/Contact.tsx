@@ -138,8 +138,8 @@ export function Contact() {
               { 
                 icon: Mail, 
                 label: 'Email', 
-                value: 'amlan.mukerjee@example.com', 
-                href: 'mailto:amlan.mukerjee@example.com',
+                value: 'amlan@clarityux.in', 
+                href: 'mailto:amlan@clarityux.in',
                 color: 'var(--color-chart-1)',
                 rotation: -1,
                 delay: 0.4

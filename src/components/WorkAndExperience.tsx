@@ -422,7 +422,7 @@ export function WorkAndExperience() {
               scrollbarColor:
                 "var(--color-primary) var(--color-background)",
               paddingTop: "60px",
-              paddingBottom: "0",
+              paddingBottom: "1.5rem",
               paddingLeft: "var(--spacing-16)",
               paddingRight: "var(--spacing-16)",
               width: "100%",
@@ -446,7 +446,7 @@ export function WorkAndExperience() {
                     height: "520px",
                     borderRadius: "var(--radius-lg)",
                     border: "2px solid var(--color-foreground)",
-                    filter: "var(--drop-shadow-2xl)",
+                    filter: "var(--drop-shadow-lg)",
                     backgroundColor: exp.color,
                     boxShadow:
                       "inset 0 0 0 20px white, 0 4px 20px rgba(0, 0, 0, 0.15)",
