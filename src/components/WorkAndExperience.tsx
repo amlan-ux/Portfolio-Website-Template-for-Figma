@@ -1,18 +1,14 @@
-import { useState, useMemo, useEffect, useRef } from "react";
-import {
-  Calendar,
-  MapPin,
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { motion } from "motion/react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import clarityUxLogo from "figma:asset/f9b2ce6c302f2e7a43379cb888e019c508fa7b5c.png";
 import travelopiaLogo from "figma:asset/b8f9c4e7a5d6f2c1e8b3a7f4d9e2c6b1a5f8d3e7.png";
 import tcsLogo from "figma:asset/2490a4166cc0a0cbe72d6eeb76d4e3ad61ef5ed1.png";
-import aspireLogo from "figma:asset/8e9782470518844671a8e88c67411356ae45deaa.png";
+import aspireLogo from "figma:asset/87bce737b7999eced935e5ee4dcc232ce1069b89.png";
 import fourSeasonsLogo from "figma:asset/67fa21b25981dc6bb9cbdab17b9608a05e1dca9c.png";
+import practoLogo from "figma:asset/cc6c7a9d97dadcffa0e559c397094324f8bb0876.png";
+import quarkExpeditionsLogo from "figma:asset/f3bb44f85e2fc275ccdbd07cc1f70171156912a3.png";
 
 // Helper function to make numbers and metrics bold in text
 const formatTextWithBoldNumbers = (text: string) => {
@@ -263,6 +259,29 @@ export function WorkAndExperience() {
         ],
       },
       {
+        role: "Product Designer",
+        company: "Quark Expeditions",
+        period: "2014 – 2015",
+        date: "2014",
+        location: "Remote",
+        description:
+          "Designed immersive expedition travel experiences",
+        highlights: [
+          "Created booking flows for polar expeditions",
+          "Designed responsive web experience",
+          "Enhanced customer journey mapping",
+        ],
+        image:
+          "https://images.unsplash.com/photo-1675122130691-0f837deefb80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjByZW50YWwlMjBzaGFyaW5nfGVufDF8fHx8MTc2NTI4MTg4Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        color: "#FDB913",
+        mood: "🧭",
+        note: "Adventure awaits!",
+        stats: [
+          { label: "Experience", value: "Premium" },
+          { label: "Regions", value: "Polar" },
+        ],
+      },
+      {
         role: "More on LinkedIn",
         company: "Catch 'Em All",
         period: "",
@@ -318,8 +337,8 @@ export function WorkAndExperience() {
 
     const autoScroll = () => {
       if (!isPaused && container) {
-        // Slow scroll to the right (1 pixel every frame ~= 60px per second)
-        container.scrollLeft += 0.5;
+        // Increased scroll speed by 3x (was 0.5, now 1.5 pixels per frame)
+        container.scrollLeft += 1.5;
 
         // Get total scrollable width
         const maxScroll =
@@ -413,6 +432,86 @@ export function WorkAndExperience() {
 
         {/* Horizontal Comic Strip Container */}
         <div className="relative">
+          {/* Left Navigation Arrow */}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              scroll("left");
+            }}
+            className="absolute left-0 top-1/2"
+            style={{
+              transform: "translateY(-50%)",
+              backgroundColor: "var(--color-background)",
+              border: "2px solid var(--color-foreground)",
+              borderRadius: "var(--radius-full)",
+              width: "44px",
+              height: "44px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              filter: "var(--drop-shadow-lg)",
+              transition: "all 0.2s ease",
+              zIndex: 50,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "var(--color-primary)";
+              e.currentTarget.style.transform = "translateY(-50%) scale(1.1)";
+              const icon = e.currentTarget.querySelector("svg");
+              if (icon) icon.style.color = "white";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "var(--color-background)";
+              e.currentTarget.style.transform = "translateY(-50%) scale(1)";
+              const icon = e.currentTarget.querySelector("svg");
+              if (icon) icon.style.color = "var(--color-foreground)";
+            }}
+            aria-label="Scroll left"
+          >
+            <ChevronLeft size={24} strokeWidth={2.5} style={{ color: "var(--color-foreground)", transition: "color 0.2s ease", pointerEvents: "none" }} />
+          </button>
+
+          {/* Right Navigation Arrow */}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              scroll("right");
+            }}
+            className="absolute right-0 top-1/2"
+            style={{
+              transform: "translateY(-50%)",
+              backgroundColor: "var(--color-background)",
+              border: "2px solid var(--color-foreground)",
+              borderRadius: "var(--radius-full)",
+              width: "44px",
+              height: "44px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              filter: "var(--drop-shadow-lg)",
+              transition: "all 0.2s ease",
+              zIndex: 50,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "var(--color-primary)";
+              e.currentTarget.style.transform = "translateY(-50%) scale(1.1)";
+              const icon = e.currentTarget.querySelector("svg");
+              if (icon) icon.style.color = "white";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "var(--color-background)";
+              e.currentTarget.style.transform = "translateY(-50%) scale(1)";
+              const icon = e.currentTarget.querySelector("svg");
+              if (icon) icon.style.color = "var(--color-foreground)";
+            }}
+            aria-label="Scroll right"
+          >
+            <ChevronRight size={24} strokeWidth={2.5} style={{ color: "var(--color-foreground)", transition: "color 0.2s ease", pointerEvents: "none" }} />
+          </button>
+
           {/* Scrollable Comic Panels Container */}
           <div
             id="comic-strip-container"
@@ -449,7 +548,7 @@ export function WorkAndExperience() {
                     borderRadius: "var(--radius-lg)",
                     border: "2px solid var(--color-foreground)",
                     filter: "var(--drop-shadow-lg)",
-                    backgroundColor: exp.color,
+                    backgroundColor: exp.company === "Practo" ? "#f5f5f5" : exp.color,
                     boxShadow:
                       "inset 0 0 0 20px white, 0 4px 20px rgba(0, 0, 0, 0.15)",
                     padding: "var(--spacing-12)",
@@ -461,69 +560,52 @@ export function WorkAndExperience() {
                 >
                   {/* Company Logo - Centered */}
                   <div className="flex-1 flex items-center justify-center">
-                    <div className="flex flex-col items-center gap-6">
-                      <ImageWithFallback
-                        src={
-                          exp.company === "ClarityUX™"
-                            ? clarityUxLogo
-                            : exp.company === "Travelopia"
-                              ? travelopiaLogo
-                              : exp.company ===
-                                  "TCS World Travel"
-                                ? tcsLogo
-                                : exp.company === "Aspire"
-                                  ? aspireLogo
-                                  : exp.company ===
-                                      "Four Seasons"
-                                    ? fourSeasonsLogo
-                                    : exp.image
-                        }
-                        alt={`${exp.company} logo`}
-                        className="object-cover"
-                        style={{
-                          width: "180px",
-                          height: "180px",
-                          objectPosition: "left center",
-                          clipPath:
-                            exp.company === "Aspire" ||
-                            exp.company === "Four Seasons"
-                              ? "none"
-                              : "inset(0 15% 0 0)",
-                          backgroundColor:
-                            exp.company ===
-                              "TCS World Travel" ||
-                            exp.company === "Four Seasons"
-                              ? "#000000"
-                              : "transparent",
-                          padding:
-                            exp.company ===
-                              "TCS World Travel" ||
-                            exp.company === "Four Seasons"
-                              ? "var(--spacing-4)"
-                              : "0",
-                        }}
-                      />
-
-                      {/* Description */}
-                      <p
-                        className="font-body text-center"
-                        style={{
-                          fontSize: "var(--text-base)",
-                          fontWeight:
-                            "var(--font-weight-medium)",
-                          maxWidth: "300px",
-                          lineHeight: "1.4",
-                          color:
-                            DARK_BACKGROUND_COMPANIES.includes(
-                              exp.company,
-                            )
-                              ? "white"
-                              : "var(--color-foreground)",
-                        }}
-                      >
-                        {exp.description}
-                      </p>
-                    </div>
+                    <ImageWithFallback
+                      src={
+                        exp.company === "ClarityUX™"
+                          ? clarityUxLogo
+                          : exp.company === "Travelopia"
+                            ? travelopiaLogo
+                            : exp.company ===
+                                "TCS World Travel"
+                              ? tcsLogo
+                              : exp.company === "Aspire"
+                                ? aspireLogo
+                                : exp.company ===
+                                    "Four Seasons"
+                                  ? fourSeasonsLogo
+                                  : exp.company === "Practo"
+                                    ? practoLogo
+                                    : exp.company === "Quark Expeditions"
+                                      ? quarkExpeditionsLogo
+                                      : exp.image
+                      }
+                      alt={`${exp.company} logo`}
+                      className="object-contain"
+                      style={{
+                        width: "100%",
+                        height: "180px",
+                        objectPosition: "center",
+                        clipPath:
+                          exp.company === "Aspire" ||
+                          exp.company === "Four Seasons" ||
+                          exp.company === "Quark Expeditions"
+                            ? "none"
+                            : "none",
+                        backgroundColor:
+                          exp.company ===
+                            "TCS World Travel" ||
+                          exp.company === "Four Seasons"
+                            ? "#000000"
+                            : "transparent",
+                        padding:
+                          exp.company ===
+                            "TCS World Travel" ||
+                          exp.company === "Four Seasons"
+                            ? "var(--spacing-4)"
+                            : "0",
+                      }}
+                    />
                   </div>
 
                   {/* Subtle shine effect */}

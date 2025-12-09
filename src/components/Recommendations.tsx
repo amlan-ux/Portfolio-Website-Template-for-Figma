@@ -1,8 +1,8 @@
-import { Quote, Star, Heart, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Linkedin, Star, Heart, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import aspireLogo from "figma:asset/8e9782470518844671a8e88c67411356ae45deaa.png";
+import aspireLogo from "figma:asset/87bce737b7999eced935e5ee4dcc232ce1069b89.png";
 
 export function Recommendations() {
   const [currentIndex, setCurrentIndex] = useState(0);
