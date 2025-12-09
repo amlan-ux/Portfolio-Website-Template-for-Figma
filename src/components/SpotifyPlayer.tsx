@@ -14,12 +14,12 @@ interface SpotifyPlayerProps {
 export function SpotifyPlayer({ initialPosition, activeSection = 'home' }: SpotifyPlayerProps) {
   // Calculate default position (top right area)
   const getDefaultPosition = useCallback(() => {
-    // Always use calculated position for top-right, ignore initialPosition
-    const playerWidth = 320; // Account for full player width
-    const margin = 40; // Margin from edge
-    const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1400;
+    // Position within the Hero section container (max-width 1400px)
+    const containerWidth = 1400;
+    const playerWidth = 320;
+    const margin = 40;
     return { 
-      x: viewportWidth - playerWidth - margin, // Right side
+      x: containerWidth - playerWidth - margin, // Right side of hero container
       y: 80 // Top position with margin
     };
   }, []);
@@ -99,9 +99,14 @@ export function SpotifyPlayer({ initialPosition, activeSection = 'home' }: Spoti
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     if (isDragging && elementRef.current) {
-      const newX = e.clientX - dragOffset.x;
-      const newY = e.clientY - dragOffset.y;
-      setPosition({ x: newX, y: newY });
+      const container = elementRef.current.parentElement;
+      if (container) {
+        const containerRect = container.getBoundingClientRect();
+        setPosition({
+          x: e.clientX - containerRect.left - dragOffset.x,
+          y: e.clientY - containerRect.top - dragOffset.y
+        });
+      }
     }
   }, [isDragging, dragOffset.x, dragOffset.y]);
 
@@ -120,13 +125,10 @@ export function SpotifyPlayer({ initialPosition, activeSection = 'home' }: Spoti
     }
   }, [isDragging, handleMouseMove, handleMouseUp]);
 
-  // Determine if player should be minimized
-  const isMinimized = activeSection !== 'home';
-  
-  // Calculate target position based on state
-  const targetX = isMinimized ? window.innerWidth - 220 : position.x;
-  const targetY = isMinimized ? 20 : position.y;
-  const targetScale = isMinimized ? 0.65 : 1;
+  // Hide completely when not on home section
+  if (activeSection !== 'home') {
+    return null;
+  }
 
   return (
     <motion.div
@@ -134,24 +136,22 @@ export function SpotifyPlayer({ initialPosition, activeSection = 'home' }: Spoti
       initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
       animate={{ 
         opacity: 1, 
-        scale: targetScale, 
-        rotate: 0,
-        x: targetX,
-        y: targetY
+        scale: 1, 
+        rotate: 0
       }}
       transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
-      whileHover={!isMinimized ? { scale: 1.05, rotate: 2 } : {}}
+      whileHover={{ scale: 1.05, rotate: 2 }}
       style={{
-        position: 'fixed',
-        left: 0,
-        top: 0,
-        cursor: isMinimized ? 'default' : (isDragging ? 'grabbing' : 'grab'),
-        zIndex: isMinimized ? 200 : (isDragging ? 9999 : 100),
+        position: 'absolute',
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+        cursor: isDragging ? 'grabbing' : 'grab',
+        zIndex: isDragging ? 9999 : 100,
         userSelect: 'none',
         width: '380px',
         pointerEvents: 'auto'
       }}
-      onMouseDown={isMinimized ? undefined : handleMouseDown}
+      onMouseDown={handleMouseDown}
     >
       <div 
         className="relative"

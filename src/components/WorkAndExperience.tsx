@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import {
   Calendar,
   MapPin,
@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import { motion } from "motion/react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { Contact } from "./Contact";
 import clarityUxLogo from "figma:asset/f9b2ce6c302f2e7a43379cb888e019c508fa7b5c.png";
 import travelopiaLogo from "figma:asset/b8f9c4e7a5d6f2c1e8b3a7f4d9e2c6b1a5f8d3e7.png";
 import tcsLogo from "figma:asset/2490a4166cc0a0cbe72d6eeb76d4e3ad61ef5ed1.png";
@@ -48,6 +47,8 @@ const DARK_BACKGROUND_COMPANIES = [
 
 export function WorkAndExperience() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const scrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const experiences = useMemo(
     () => [
@@ -128,8 +129,7 @@ export function WorkAndExperience() {
         period: "2020 – 2021",
         date: "2020",
         location: "Remote",
-        description:
-          "Created engaging e-learning experiences",
+        description: "Created engaging e-learning experiences",
         highlights: [
           "Designed interactive learning platform",
           "Improved student engagement",
@@ -304,6 +304,57 @@ export function WorkAndExperience() {
     }
   };
 
+  // Auto-scroll effect - continuous and cyclical
+  useEffect(() => {
+    const container = document.getElementById("comic-strip-container");
+    if (!container) return;
+
+    let animationFrameId: number;
+    let isPaused = false;
+
+    const autoScroll = () => {
+      if (!isPaused && container) {
+        // Slow scroll to the right (1 pixel every frame ~= 60px per second)
+        container.scrollLeft += 0.5;
+
+        // Get total scrollable width
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        
+        // When we reach the end, smoothly loop back to start
+        if (container.scrollLeft >= maxScroll) {
+          container.scrollLeft = 0;
+        }
+
+        // Update current slide based on scroll position
+        const slideIndex = Math.round(container.scrollLeft / 600);
+        setCurrentSlide(Math.min(slideIndex, experiences.length - 1));
+      }
+      
+      animationFrameId = requestAnimationFrame(autoScroll);
+    };
+
+    // Start auto-scroll
+    animationFrameId = requestAnimationFrame(autoScroll);
+
+    // Pause on hover
+    const handleMouseEnter = () => {
+      isPaused = true;
+    };
+
+    const handleMouseLeave = () => {
+      isPaused = false;
+    };
+
+    container.addEventListener("mouseenter", handleMouseEnter);
+    container.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      container.removeEventListener("mouseenter", handleMouseEnter);
+      container.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [experiences.length]);
+
   return (
     <section
       className="py-16 px-6 relative overflow-hidden"
@@ -312,7 +363,10 @@ export function WorkAndExperience() {
         marginTop: "-150px",
       }}
     >
-      <div className="max-w-full mx-auto relative" style={{ overflowX: "visible" }}>
+      <div
+        className="max-w-full mx-auto relative"
+        style={{ overflowX: "visible" }}
+      >
         {/* Main Section Title */}
         <div className="mb-12 text-center relative">
           <div
@@ -399,7 +453,8 @@ export function WorkAndExperience() {
                             ? clarityUxLogo
                             : exp.company === "Travelopia"
                               ? travelopiaLogo
-                              : exp.company === "TCS World Travel"
+                              : exp.company ===
+                                  "TCS World Travel"
                                 ? tcsLogo
                                 : exp.image
                         }
@@ -410,8 +465,14 @@ export function WorkAndExperience() {
                           height: "180px",
                           objectPosition: "left center",
                           clipPath: "inset(0 15% 0 0)",
-                          backgroundColor: exp.company === "TCS World Travel" ? "#000000" : "transparent",
-                          padding: exp.company === "TCS World Travel" ? "var(--spacing-4)" : "0",
+                          backgroundColor:
+                            exp.company === "TCS World Travel"
+                              ? "#000000"
+                              : "transparent",
+                          padding:
+                            exp.company === "TCS World Travel"
+                              ? "var(--spacing-4)"
+                              : "0",
                         }}
                       />
 
@@ -420,12 +481,16 @@ export function WorkAndExperience() {
                         className="font-body text-center"
                         style={{
                           fontSize: "var(--text-base)",
-                          fontWeight: "var(--font-weight-medium)",
+                          fontWeight:
+                            "var(--font-weight-medium)",
                           maxWidth: "300px",
                           lineHeight: "1.4",
-                          color: DARK_BACKGROUND_COMPANIES.includes(exp.company)
-                            ? "white"
-                            : "var(--color-foreground)",
+                          color:
+                            DARK_BACKGROUND_COMPANIES.includes(
+                              exp.company,
+                            )
+                              ? "white"
+                              : "var(--color-foreground)",
                         }}
                       >
                         {exp.description}
@@ -466,7 +531,7 @@ export function WorkAndExperience() {
                       transform: "translateY(-50%)",
                       width: "32px",
                       height: "16px",
-                      zIndex: 10,
+                      zIndex: 0,
                     }}
                   >
                     <svg
@@ -509,92 +574,84 @@ export function WorkAndExperience() {
                 )}
               </motion.div>
             ))}
+            <div
+              className="flex items-center justify-between px-4"
+              style={{
+                marginTop: "var(--spacing-2)",
+                paddingTop: "0.5rem",
+                paddingBottom: "0",
+              }}
+            >
+              {/* Pagination Dots - Left Side */}
+              <div className="flex items-center gap-2">
+                {experiences.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setCurrentSlide(index);
+                      const container = document.getElementById(
+                        "comic-strip-container",
+                      );
+                      if (container) {
+                        container.scrollTo({
+                          left: index * 600,
+                          behavior: "smooth",
+                        });
+                      }
+                    }}
+                    className="transition-all duration-300 border-2 border-foreground"
+                    style={{
+                      width: "12px",
+                      height: "12px",
+                      borderRadius: "0",
+                      backgroundColor:
+                        currentSlide === index
+                          ? "var(--color-foreground)"
+                          : "transparent",
+                    }}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+
+              {/* Arrow Navigation - Right Side */}
+              <div className="flex items-center gap-3">
+                {/* Left Arrow Button */}
+                <motion.button
+                  onClick={() => scroll("left")}
+                  className="flex items-center justify-center bg-background text-foreground border-2 border-foreground font-body"
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    borderRadius: "var(--radius-md)",
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label="Previous slide"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </motion.button>
+
+                {/* Right Arrow Button */}
+                <motion.button
+                  onClick={() => scroll("right")}
+                  className="flex items-center justify-center bg-background text-foreground border-2 border-foreground font-body"
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    borderRadius: "var(--radius-md)",
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label="Next slide"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </motion.button>
+              </div>
+            </div>
           </div>
 
           {/* Navigation Controls - Dots on left, Arrows on right */}
-          <div
-            className="flex items-center justify-between px-4"
-            style={{
-              marginTop: "var(--spacing-2)",
-              paddingTop: "0.5rem",
-              paddingBottom: "48px",
-            }}
-          >
-            {/* Pagination Dots - Left Side */}
-            <div className="flex items-center gap-2">
-              {experiences.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    setCurrentSlide(index);
-                    const container = document.getElementById(
-                      "comic-strip-container",
-                    );
-                    if (container) {
-                      container.scrollTo({
-                        left: index * 600,
-                        behavior: "smooth",
-                      });
-                    }
-                  }}
-                  className="transition-all duration-300 border-2 border-foreground"
-                  style={{
-                    width: "12px",
-                    height: "12px",
-                    borderRadius: "0",
-                    backgroundColor:
-                      currentSlide === index
-                        ? "var(--color-foreground)"
-                        : "transparent",
-                  }}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
-
-            {/* Arrow Navigation - Right Side */}
-            <div className="flex items-center gap-3">
-              {/* Left Arrow Button */}
-              <motion.button
-                onClick={() => scroll("left")}
-                className="flex items-center justify-center bg-background text-foreground border-2 border-foreground font-body"
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "var(--radius-md)",
-                }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label="Previous slide"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </motion.button>
-
-              {/* Right Arrow Button */}
-              <motion.button
-                onClick={() => scroll("right")}
-                className="flex items-center justify-center bg-background text-foreground border-2 border-foreground font-body"
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "var(--radius-md)",
-                }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label="Next slide"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </motion.button>
-            </div>
-          </div>
-        </div>
-
-        {/* CONTACT SECTION - Integrated at the end */}
-        <div
-          id="contact-section"
-          style={{ marginTop: "var(--spacing-32)" }}
-        >
-          <Contact />
         </div>
       </div>
     </section>

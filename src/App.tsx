@@ -77,9 +77,6 @@ export default function App() {
       </AnimatePresence>
 
       <PannableCanvas ref={canvasRef}>
-        {/* Spotify Player - persists across all pages */}
-        <SpotifyPlayer activeSection={activeSection} />
-        
         <div 
           className="relative"
           style={{
@@ -97,6 +94,14 @@ export default function App() {
           
           <div id="work-section" style={{ marginTop: '200px' }}>
             <WorkAndExperience />
+          </div>
+
+          <div style={{ marginTop: '150px' }}>
+            <Recommendations />
+          </div>
+
+          <div id="contact-section" style={{ marginTop: '150px' }}>
+            <Contact />
           </div>
         </div>
       </PannableCanvas>

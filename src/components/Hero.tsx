@@ -1,7 +1,7 @@
-import image_c2713c601c14d20a456155af5dacf99e5000c2b6 from 'figma:asset/c2713c601c14d20a456155af5dacf99e5000c2b6.png';
-import newSportsPhoto from 'figma:asset/58dab2a2ad11d00e0c0f2e03bbbef3b464d8e764.png';
-import workshopPhoto from 'figma:asset/2cd30ed1ead3a1ec2819d5bbd37a19f3bf67ccd9.png';
-import presentationPhoto from 'figma:asset/47e7935ba419d03ab9ba79bb00335cf080ecd7a5.png';
+import image_c2713c601c14d20a456155af5dacf99e5000c2b6 from "figma:asset/c2713c601c14d20a456155af5dacf99e5000c2b6.png";
+import newSportsPhoto from "figma:asset/58dab2a2ad11d00e0c0f2e03bbbef3b464d8e764.png";
+import workshopPhoto from "figma:asset/2cd30ed1ead3a1ec2819d5bbd37a19f3bf67ccd9.png";
+import presentationPhoto from "figma:asset/47e7935ba419d03ab9ba79bb00335cf080ecd7a5.png";
 import image_5f0b87f44b5cd7080a272fec884a22e80d3b34a4 from "figma:asset/5f0b87f44b5cd7080a272fec884a22e80d3b34a4.png";
 import image_5f0b87f44b5cd7080a272fec884a22e80d3b34a4 from "figma:asset/5f0b87f44b5cd7080a272fec884a22e80d3b34a4.png";
 import image_381d3736b2a5019a83d72a3b5c13c5d25c427f9c from "figma:asset/381d3736b2a5019a83d72a3b5c13c5d25c427f9c.png";
@@ -51,6 +51,7 @@ import frenchTechPhoto from "figma:asset/086ebd1440d62878af5df26b89142fec88cb10d
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { CoffeeCard } from "./CoffeeCard";
 import { SportsCard } from "./SportsCard";
+import { SpotifyPlayer } from "./SpotifyPlayer";
 
 interface Position {
   x: number;
@@ -353,12 +354,12 @@ export function Hero() {
   const handleReset = useCallback(() => {
     // Clear all draggable element positions from localStorage
     const keys = Object.keys(localStorage);
-    keys.forEach(key => {
-      if (key.startsWith('draggable-')) {
+    keys.forEach((key) => {
+      if (key.startsWith("draggable-")) {
         localStorage.removeItem(key);
       }
     });
-    
+
     // Reload page immediately to reset all draggable positions
     window.location.reload();
   }, []);
@@ -831,8 +832,8 @@ export function Hero() {
                 I'm a product designer & developer with a
                 passion for building products and growing
                 communities. Hoping to shape the future of
-                design-dev collab. <br /><br />Have fun exploring my
-                portfolio!
+                design-dev collab. <br />
+                <br />
               </p>{" "}
               <br />
               {/* Social Links */}
@@ -1059,7 +1060,7 @@ export function Hero() {
                     growth
                   </p>
                   <p>
-                    • Grew LinkedIn community to 1.1k memebers
+                    • Grew LinkedIn community to 1.1k members
                   </p>
                   <p>
                     • Developing walkthrough videos, marketplace
@@ -1543,7 +1544,7 @@ export function Hero() {
                 className="text-black font-handwritten text-center"
                 style={{ fontSize: "var(--text-sm)" }}
               >
-              AI Workshops!
+                AI Workshops!
               </p>
             </motion.div>
           </div>
@@ -1576,9 +1577,9 @@ export function Hero() {
               whileTap={{ scale: 0.98 }}
             >
               {/* Video container - covers black bars */}
-              <div 
-                className="bg-muted overflow-hidden relative w-full mb-2" 
-                style={{ 
+              <div
+                className="bg-muted overflow-hidden relative w-full mb-2"
+                style={{
                   height: "200px",
                 }}
               >
@@ -1587,18 +1588,18 @@ export function Hero() {
                   title="YouTube video"
                   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  style={{ 
+                  style={{
                     border: "none",
                     width: "355px",
                     height: "200px",
                   }}
                 />
               </div>
-              
+
               {/* Polaroid caption */}
-              <p 
+              <p
                 className="text-foreground font-handwritten text-center"
-                style={{ 
+                style={{
                   fontSize: "var(--text-sm)",
                 }}
               >
@@ -1607,8 +1608,6 @@ export function Hero() {
             </motion.div>
           </div>
         </DraggableElement>
-
-
 
         {/* Polaroid 3 - Bottom middle right */}
         <DraggableElement
@@ -2089,14 +2088,17 @@ export function Hero() {
                   src={speakerPhoto}
                   alt="Conference event"
                   className="w-full h-full object-cover"
-                  style={{ objectPosition: "10% 40%", transform: "rotate(-10deg)" }}
+                  style={{
+                    objectPosition: "10% 40%",
+                    transform: "rotate(-10deg)",
+                  }}
                 />
               </div>
               <p
                 className="text-foreground font-handwritten text-center"
                 style={{ fontSize: "var(--text-sm)" }}
               >
-             Founders Community ❤️
+                Founders Community ❤️
               </p>
             </motion.div>
           </div>
@@ -2237,17 +2239,20 @@ export function Hero() {
         <SportsCard onClose={() => setShowSportsCard(false)} />
       )}
 
+      {/* Spotify Player - part of hero section only */}
+      <SpotifyPlayer activeSection="home" />
+
       {/* Reset button - desktop only, positioned within Hero section */}
       <motion.button
         onClick={handleReset}
         className="hidden md:absolute bottom-6 right-6 px-4 py-3 bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors md:flex items-center gap-3 font-body group"
-        style={{ 
-          borderRadius: 'var(--radius-lg)',
-          fontSize: 'var(--text-sm)',
+        style={{
+          borderRadius: "var(--radius-lg)",
+          fontSize: "var(--text-sm)",
           zIndex: 50,
-          filter: 'var(--drop-shadow-lg)',
-          pointerEvents: 'auto',
-          cursor: 'pointer'
+          filter: "var(--drop-shadow-lg)",
+          pointerEvents: "auto",
+          cursor: "pointer",
         }}
         aria-label="Reset canvas"
         title="Reset canvas (Press R)"
@@ -2256,11 +2261,11 @@ export function Hero() {
       >
         <RotateCcw className="w-5 h-5 group-hover:rotate-180 transition-transform duration-300" />
         <span>Reset</span>
-        <motion.kbd 
+        <motion.kbd
           className="px-2 py-1 bg-primary-foreground text-primary font-mono"
-          style={{ 
-            borderRadius: 'var(--radius-sm)',
-            fontSize: 'var(--text-xs)'
+          style={{
+            borderRadius: "var(--radius-sm)",
+            fontSize: "var(--text-xs)",
           }}
           whileHover={{ scale: 1.1 }}
         >

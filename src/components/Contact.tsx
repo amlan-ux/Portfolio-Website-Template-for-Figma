@@ -1,4 +1,4 @@
-import { Mail, Phone, Linkedin, ExternalLink, MapPin, ArrowRight, Heart, Zap, Star, Github, Twitter, Globe } from 'lucide-react';
+import { Mail, Linkedin, ExternalLink, MapPin, ArrowRight, Heart, Zap, Star, Github, Twitter, Globe } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { motion } from 'motion/react';
 
@@ -71,27 +71,29 @@ export function Contact() {
             />
 
             <div 
-              className="relative bg-primary p-12 text-primary-foreground shadow-2xl border-4 border-secondary"
+              className="relative p-12 shadow-2xl border-4"
               style={{ 
+                backgroundColor: '#FDE047',
+                color: 'var(--color-foreground)',
+                borderColor: '#000000',
                 borderRadius: 'var(--radius-card)',
                 clipPath: 'polygon(0% 3%, 3% 0%, 97% 0%, 100% 2%, 100% 98%, 98% 100%, 2% 100%, 0% 97%)'
               }}
             >
               {/* Corner decoration */}
-              <div className="absolute top-3 right-3 w-3 h-3 bg-primary-foreground/20 rounded-full" />
-              <div className="absolute bottom-3 left-3 w-2 h-2 bg-primary-foreground/20 rounded-full" />
+              <div className="absolute top-3 right-3 w-3 h-3 rounded-full" style={{ backgroundColor: 'var(--color-foreground-alpha-20)' }} />
+              <div className="absolute bottom-3 left-3 w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--color-foreground-alpha-20)' }} />
 
-              <h2 className="text-primary-foreground mb-6 font-display" style={{ fontSize: 'var(--text-3xl)' }}>
-                Let's build Figma's APAC developer community
+              <h2 className="mb-6 font-display" style={{ fontSize: 'var(--text-3xl)', lineHeight: '120%', color: 'var(--color-foreground)' }}>
+                Let's build together
               </h2>
-              <p className="text-primary-foreground/80 mb-8 font-body" style={{ fontSize: 'var(--text-base)' }}>
-                I'm excited to bring my experience building on Figma's platform to enable developers 
-                across the APAC region. Let's discuss how we can grow this ecosystem together.
+              <p className="mb-8 font-body" style={{ fontSize: 'var(--text-base)', color: 'var(--color-foreground)', opacity: 0.8 }}>
+                With hands-on experience building on the Figma platform, running developer workshops, and creating tools like ClarityUX for better collaboration, I'm confident I can help empower developers across APAC. I'd love to explore how we can grow this ecosystem together.
               </p>
               
               <motion.div 
-                className="relative aspect-video overflow-hidden mb-8 border-4 border-primary-foreground/20" 
-                style={{ borderRadius: 'var(--radius-lg)' }}
+                className="relative aspect-video overflow-hidden border-4" 
+                style={{ borderRadius: 'var(--radius-lg)', borderColor: 'var(--color-foreground-alpha-20)' }}
                 whileHover={{ scale: 1.05, rotate: 0 }}
                 transition={{ type: 'spring', stiffness: 300 }}
               >
@@ -101,38 +103,7 @@ export function Contact() {
                   className="w-full h-full object-cover"
                 />
                 {/* Polaroid label */}
-                <div 
-                  className="absolute bottom-3 right-3 bg-white/90 px-3 py-1 shadow-md font-handwritten"
-                  style={{ 
-                    transform: 'rotate(3deg)',
-                    fontSize: 'var(--text-sm)',
-                    borderRadius: 'var(--radius-sm)'
-                  }}
-                >
-                  Ready to build! 🚀
-                </div>
               </motion.div>
-
-              <div className="flex flex-wrap gap-4">
-                <span 
-                  className="px-4 py-2 bg-primary-foreground/10 text-primary-foreground font-body border-2 border-primary-foreground/20"
-                  style={{ borderRadius: '999px', fontSize: 'var(--text-sm)' }}
-                >
-                  ✓ Bengaluru-based
-                </span>
-                <span 
-                  className="px-4 py-2 bg-primary-foreground/10 text-primary-foreground font-body border-2 border-primary-foreground/20"
-                  style={{ borderRadius: '999px', fontSize: 'var(--text-sm)' }}
-                >
-                  ✓ 25%+ travel ready
-                </span>
-                <span 
-                  className="px-4 py-2 bg-primary-foreground/10 text-primary-foreground font-body border-2 border-primary-foreground/20"
-                  style={{ borderRadius: '999px', fontSize: 'var(--text-sm)' }}
-                >
-                  ✓ Available immediately
-                </span>
-              </div>
             </div>
 
             {/* Paper clip decoration */}
@@ -149,8 +120,10 @@ export function Contact() {
               transition={{ delay: 0.2 }}
             >
               <div 
-                className="inline-block px-4 py-1.5 bg-secondary text-secondary-foreground mb-4 shadow-md"
+                className="inline-block px-4 py-1.5 mb-4 shadow-md"
                 style={{ 
+                  backgroundColor: '#000000',
+                  color: '#ffffff',
                   borderRadius: '999px', 
                   fontSize: 'var(--text-sm)',
                   transform: 'rotate(1deg)'
@@ -159,17 +132,6 @@ export function Contact() {
                 Get in Touch
               </div>
             </motion.div>
-            
-            <motion.h3 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              id="ready-to-talk"
-              className="text-foreground mb-8 font-display" 
-              style={{ fontSize: 'var(--text-2xl)' }}
-            >
-              Ready to talk?
-            </motion.h3>
 
             {/* Contact Cards */}
             {[
@@ -178,27 +140,18 @@ export function Contact() {
                 label: 'Email', 
                 value: 'amlan.mukerjee@example.com', 
                 href: 'mailto:amlan.mukerjee@example.com',
-                color: 'var(--color-secondary)',
+                color: 'var(--color-chart-1)',
                 rotation: -1,
                 delay: 0.4
-              },
-              { 
-                icon: Phone, 
-                label: 'Phone', 
-                value: '+91 98765 43210', 
-                href: 'tel:+919876543210',
-                color: 'var(--color-primary)',
-                rotation: 2,
-                delay: 0.5
               },
               { 
                 icon: Linkedin, 
                 label: 'LinkedIn', 
                 value: 'amlan-mukerjee', 
                 href: 'https://linkedin.com/in/amlan-mukerjee',
-                color: 'var(--color-secondary)',
+                color: 'var(--color-chart-2)',
                 rotation: -2,
-                delay: 0.6
+                delay: 0.5
               }
             ].map((contact, index) => (
               <motion.a
@@ -245,7 +198,7 @@ export function Contact() {
             <motion.div
               initial={{ opacity: 0, y: 20, rotate: 0 }}
               animate={{ opacity: 1, y: 0, rotate: 1 }}
-              transition={{ delay: 0.7 }}
+              transition={{ delay: 0.6 }}
               className="bg-background border-2 border-border p-6 shadow-lg"
               style={{ 
                 borderRadius: 'var(--radius-card)',
@@ -261,7 +214,7 @@ export function Contact() {
                 </div>
                 <div>
                   <div className="text-foreground/80 mb-1 font-body" style={{ fontSize: 'var(--text-sm)' }}>Location</div>
-                  <div className="text-foreground font-body" style={{ fontSize: 'var(--text-base)' }}>Bengaluru, India · APAC Travel-Ready</div>
+                  <div className="text-foreground font-body" style={{ fontSize: 'var(--text-base)' }}>Bengaluru, India · APAC, EMEA & USA Travel-Ready</div>
                 </div>
               </div>
             </motion.div>
@@ -269,8 +222,7 @@ export function Contact() {
             {/* Quick Links */}
             <div className="pt-4 space-y-4">
               {[
-                { emoji: '🔌', label: 'View ClarityUX Plugin', href: 'https://figma.com/community/plugin/clarityux', color: 'var(--color-secondary)', rotation: -2 },
-                { emoji: '🌐', label: 'Portfolio Website', href: 'https://clarityux.ai', color: 'var(--color-primary)', rotation: 1 }
+                { emoji: '🔌', label: 'View ClarityUX Plugin', href: 'https://figma.com/community/plugin/clarityux', color: '#000000', rotation: -2 }
               ].map((link, index) => (
                 <motion.a
                   key={index}
@@ -279,7 +231,7 @@ export function Contact() {
                   rel="noopener noreferrer"
                   initial={{ opacity: 0, rotate: 0 }}
                   animate={{ opacity: 1, rotate: link.rotation }}
-                  transition={{ delay: 0.8 + index * 0.1 }}
+                  transition={{ delay: 0.7 + index * 0.1 }}
                   whileHover={{ scale: 1.03, rotate: 0, y: -5 }}
                   whileTap={{ scale: 0.98 }}
                   className="flex items-center justify-between p-6 hover:opacity-90 transition-opacity group shadow-lg relative"
@@ -289,11 +241,11 @@ export function Contact() {
                     clipPath: 'polygon(2% 0%, 98% 0%, 100% 3%, 100% 97%, 99% 100%, 1% 100%, 0% 98%, 0% 2%)'
                   }}
                 >
-                  <span className="flex items-center gap-3 text-secondary-foreground">
+                  <span className="flex items-center gap-3" style={{ color: '#ffffff' }}>
                     <span style={{ fontSize: '32px' }}>{link.emoji}</span>
                     <span className="font-body" style={{ fontSize: 'var(--text-base)' }}>{link.label}</span>
                   </span>
-                  <ExternalLink className="w-5 h-5 text-secondary-foreground group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  <ExternalLink className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" style={{ color: '#ffffff' }} />
                   
                   {/* Sticker highlight */}
                   <div className="absolute -top-2 -right-2 w-8 h-8 bg-secondary rounded-full shadow-md" style={{ transform: 'rotate(25deg)' }} />
