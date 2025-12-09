@@ -306,7 +306,9 @@ export function WorkAndExperience() {
 
   // Auto-scroll effect - continuous and cyclical
   useEffect(() => {
-    const container = document.getElementById("comic-strip-container");
+    const container = document.getElementById(
+      "comic-strip-container",
+    );
     if (!container) return;
 
     let animationFrameId: number;
@@ -318,18 +320,23 @@ export function WorkAndExperience() {
         container.scrollLeft += 0.5;
 
         // Get total scrollable width
-        const maxScroll = container.scrollWidth - container.clientWidth;
-        
+        const maxScroll =
+          container.scrollWidth - container.clientWidth;
+
         // When we reach the end, smoothly loop back to start
         if (container.scrollLeft >= maxScroll) {
           container.scrollLeft = 0;
         }
 
         // Update current slide based on scroll position
-        const slideIndex = Math.round(container.scrollLeft / 600);
-        setCurrentSlide(Math.min(slideIndex, experiences.length - 1));
+        const slideIndex = Math.round(
+          container.scrollLeft / 600,
+        );
+        setCurrentSlide(
+          Math.min(slideIndex, experiences.length - 1),
+        );
       }
-      
+
       animationFrameId = requestAnimationFrame(autoScroll);
     };
 
@@ -350,8 +357,14 @@ export function WorkAndExperience() {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
-      container.removeEventListener("mouseenter", handleMouseEnter);
-      container.removeEventListener("mouseleave", handleMouseLeave);
+      container.removeEventListener(
+        "mouseenter",
+        handleMouseEnter,
+      );
+      container.removeEventListener(
+        "mouseleave",
+        handleMouseLeave,
+      );
     };
   }, [experiences.length]);
 
@@ -405,11 +418,11 @@ export function WorkAndExperience() {
             style={{
               overflowX: "auto",
               overflowY: "visible",
-              scrollbarWidth: "thin",
+              scrollbarWidth: "none",
               scrollbarColor:
                 "var(--color-primary) var(--color-background)",
               paddingTop: "60px",
-              paddingBottom: "60px",
+              paddingBottom: "0",
               paddingLeft: "var(--spacing-16)",
               paddingRight: "var(--spacing-16)",
               width: "100%",
@@ -574,81 +587,6 @@ export function WorkAndExperience() {
                 )}
               </motion.div>
             ))}
-            <div
-              className="flex items-center justify-between px-4"
-              style={{
-                marginTop: "var(--spacing-2)",
-                paddingTop: "0.5rem",
-                paddingBottom: "0",
-              }}
-            >
-              {/* Pagination Dots - Left Side */}
-              <div className="flex items-center gap-2">
-                {experiences.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setCurrentSlide(index);
-                      const container = document.getElementById(
-                        "comic-strip-container",
-                      );
-                      if (container) {
-                        container.scrollTo({
-                          left: index * 600,
-                          behavior: "smooth",
-                        });
-                      }
-                    }}
-                    className="transition-all duration-300 border-2 border-foreground"
-                    style={{
-                      width: "12px",
-                      height: "12px",
-                      borderRadius: "0",
-                      backgroundColor:
-                        currentSlide === index
-                          ? "var(--color-foreground)"
-                          : "transparent",
-                    }}
-                    aria-label={`Go to slide ${index + 1}`}
-                  />
-                ))}
-              </div>
-
-              {/* Arrow Navigation - Right Side */}
-              <div className="flex items-center gap-3">
-                {/* Left Arrow Button */}
-                <motion.button
-                  onClick={() => scroll("left")}
-                  className="flex items-center justify-center bg-background text-foreground border-2 border-foreground font-body"
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "var(--radius-md)",
-                  }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  aria-label="Previous slide"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </motion.button>
-
-                {/* Right Arrow Button */}
-                <motion.button
-                  onClick={() => scroll("right")}
-                  className="flex items-center justify-center bg-background text-foreground border-2 border-foreground font-body"
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "var(--radius-md)",
-                  }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  aria-label="Next slide"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </motion.button>
-              </div>
-            </div>
           </div>
 
           {/* Navigation Controls - Dots on left, Arrows on right */}

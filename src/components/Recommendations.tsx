@@ -1,6 +1,7 @@
 import { Quote, Star, Heart, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 
 export function Recommendations() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -13,8 +14,10 @@ export function Recommendations() {
       date: "November 3, 2025",
       relationship: "was senior to Amlan but didn't manage directly",
       quote: "I've had the privilege of working with Amlan for the past four years, and he consistently sets an exceptionally high bar. Amlan successfully built and led a team of 8 designers, establishing clear standards of excellence. His leadership was instrumental in major website transformation projects, including the complete redesign of Quark Expeditions. What truly distinguishes Amlan is his forward-thinking embrace of AI. Rather than viewing it as a threat, he championed an AI-first mindset and pioneered new workflows for the design team. This innovation has dramatically accelerated our delivery.",
-      color: 'var(--color-background)',
-      rotation: -2
+      color: 'white',
+      rotation: -2,
+      photo: "https://images.unsplash.com/photo-1737574821698-862e77f044c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzc21hbiUyMHBvcnRyYWl0fGVufDF8fHx8MTc2NTI3OTY4NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      companyLogo: "https://images.unsplash.com/photo-1661347998423-b15d37d6f61e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNoJTIwY29tcGFueSUyMGJyYW5kfGVufDF8fHx8MTc2NTI2NjU5Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
     },
     {
       name: "Damien Passavent",
@@ -22,8 +25,10 @@ export function Recommendations() {
       date: "April 6, 2023",
       relationship: "was senior to Amlan but didn't manage directly",
       quote: "As the Head of Product at Aspire, I had the opportunity to mentor Amlan, who was leading the design team of one of our Product groups. Even in a fiercely competitive industry like Fintech, Amlan managed to create a work environment where everyone felt appreciated and their voices heard. Working under his guidance and leadership would be an incredibly valuable experience for any team.",
-      color: 'var(--color-background)',
-      rotation: 2
+      color: 'white',
+      rotation: 2,
+      photo: "https://images.unsplash.com/photo-1618591552964-837a5a315fb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHByb2Zlc3Npb25hbCUyMG1hbGV8ZW58MXx8fHwxNzY1MjQ4MjMyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      companyLogo: "https://images.unsplash.com/photo-1570566920413-fd6410fec24c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc3BpcmUlMjBmaW50ZWNoJTIwbG9nb3xlbnwxfHx8fDE3NjUzMDM0Njl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
     },
     {
       name: "Hammad Jilani",
@@ -31,8 +36,10 @@ export function Recommendations() {
       date: "March 26, 2023",
       relationship: "managed Amlan directly",
       quote: "I have had the pleasure of working closely with Amlan as one of the lead designers in my team. Amlan consistently delivers high-quality work that exceeds expectations, and he has an incredible ability to turn complex ideas into intuitive designs. But his most appealing quality is his speed of execution. With Amlan, you can expect abstract ideas to transform into testable designs within few days instead of weeks.",
-      color: 'var(--color-background)',
-      rotation: -1.5
+      color: 'white',
+      rotation: -1.5,
+      photo: "https://images.unsplash.com/photo-1522206038088-8698bcefa6a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB3b21hbiUyMGV4ZWN1dGl2ZXxlbnwxfHx8fDE3NjUyNTE1MDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      companyLogo: "https://images.unsplash.com/photo-1551263640-1c007852f616?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdGFydHVwJTIwY29tcGFueSUyMGxvZ298ZW58MXx8fHwxNzY1MzAzNDcwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
     },
     {
       name: "Katrine Kvanvik Eriksen",
@@ -40,8 +47,10 @@ export function Recommendations() {
       date: "August 16, 2022",
       relationship: "worked with Amlan on the same team",
       quote: "Amlan worked with Decisions on various design tasks over a couple of months. He helped us produce production-ready designs and got us on an interesting path for one of our main dashboards. Amlan has good design skills and communicated his ideas well with the team.",
-      color: 'var(--color-background)',
-      rotation: 1.5
+      color: 'white',
+      rotation: 1.5,
+      photo: "https://images.unsplash.com/photo-1752859951149-7d3fc700a7ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNoJTIwcHJvZmVzc2lvbmFsJTIwcG9ydHJhaXR8ZW58MXx8fHwxNzY1Mjg5NzcyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      companyLogo: "https://images.unsplash.com/photo-1595409583957-5d1ec5869de9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZWNpc2lvbnMlMjBhaSUyMGxvZ298ZW58MXx8fHwxNzY1MzAzNDY5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
     },
     {
       name: "Skanda Bhat",
@@ -49,8 +58,10 @@ export function Recommendations() {
       date: "",
       relationship: "",
       quote: "Amlan is the master of design and product management. I worked with Amlan on ZapSign and Express Invoice, which we launched on the iOS app store to great success. His experience and knowledge in this field still amazes me. He blends it with a deep understanding of business and market, and communicates with other teams clearly. He takes the time to understand technical challenges, and manoeuvres his vision for the product accordingly.",
-      color: 'var(--color-background)',
-      rotation: -1
+      color: 'white',
+      rotation: -1,
+      photo: "https://images.unsplash.com/photo-1617386124435-9eb3935b1e11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbnRyZXByZW5ldXIlMjBwb3J0cmFpdHxlbnwxfHx8fDE3NjUyMjI4NTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      companyLogo: "https://images.unsplash.com/photo-1551263640-1c007852f616?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdGFydHVwJTIwY29tcGFueSUyMGxvZ298ZW58MXx8fHwxNzY1MzAzNDcwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
     },
     {
       name: "Ajit Paul",
@@ -58,8 +69,10 @@ export function Recommendations() {
       date: "September 1, 2014",
       relationship: "was Amlan's client",
       quote: "Amlan has delivered excellent UX design and prototype work - professional, involved, creative and timely!! Keep it up!",
-      color: 'var(--color-background)',
-      rotation: 2.5
+      color: 'white',
+      rotation: 2.5,
+      photo: "https://images.unsplash.com/photo-1738750908048-14200459c3c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGFkdmlzb3IlMjBoZWFkc2hvdHxlbnwxfHx8fDE3NjUzMDM0Njh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      companyLogo: "https://images.unsplash.com/photo-1730963292116-328f866a384d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnaWZ0b2xleGlhJTIwbG9nb3xlbnwxfHx8fDE3NjUzMDM0Njl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
     }
   ];
 
@@ -138,14 +151,33 @@ export function Recommendations() {
 
         {/* Header */}
         <motion.div 
-          className="mb-12"
+          className="mb-12 text-center relative"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-foreground font-display" style={{ fontSize: 'var(--text-4xl)', lineHeight: '1.2', textAlign: 'center' }}>
-            Kind words from colleagues
-          </h1>
+          <div
+            className="inline-block bg-primary text-primary-foreground px-10 py-5 shadow-lg relative"
+            style={{
+              transform: "rotate(-2deg)",
+              borderRadius: "var(--radius-lg)",
+              clipPath:
+                "polygon(2% 0%, 98% 1%, 100% 96%, 97% 100%, 3% 99%, 0% 6%)",
+              filter: "var(--drop-shadow-2xl)",
+            }}
+          >
+            <div
+              className="absolute -top-4 left-1/4 w-20 h-8 bg-white/20 backdrop-blur-sm"
+              style={{
+                clipPath:
+                  "polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%)",
+                transform: "rotate(-5deg)",
+              }}
+            />
+            <h1 className="font-display" style={{ fontSize: 'var(--text-4xl)' }}>
+              Kind words from colleagues
+            </h1>
+          </div>
         </motion.div>
 
         {/* Carousel Container */}
@@ -191,8 +223,8 @@ export function Recommendations() {
                     whileHover={{ scale: 1.03, rotate: 0, y: -8, zIndex: 10 }}
                     className="relative p-6 shadow-xl border-2 h-[500px] flex flex-col cursor-pointer"
                     style={{ 
-                      backgroundColor: rec.color,
-                      borderColor: rec.color === 'var(--color-background)' ? 'var(--color-border)' : 'transparent',
+                      backgroundColor: 'white',
+                      borderColor: 'var(--color-border)',
                       borderRadius: 'var(--radius-card)',
                       clipPath: 'polygon(1% 0%, 99% 0%, 100% 2%, 100% 98%, 98% 100%, 2% 100%, 0% 99%, 0% 1%)',
                       textDecoration: 'none'
@@ -207,10 +239,24 @@ export function Recommendations() {
                       }}
                     />
 
+                    {/* Company Logo at top right corner */}
+                    <div className="absolute top-4 right-4">
+                      <ImageWithFallback
+                        src={rec.companyLogo}
+                        alt="Company logo"
+                        className="object-contain"
+                        style={{
+                          width: '60px',
+                          height: '30px',
+                          opacity: 0.7
+                        }}
+                      />
+                    </div>
+
                     {/* Quote icon */}
                     <Quote 
                       className="w-8 h-8 mb-4 opacity-30" 
-                      style={{ color: rec.color === 'var(--color-background)' ? 'var(--color-foreground)' : 'var(--color-secondary-foreground)' }}
+                      style={{ color: 'var(--color-foreground)' }}
                     />
 
                     {/* Quote text */}
@@ -218,57 +264,72 @@ export function Recommendations() {
                       className="mb-6 font-body leading-relaxed flex-1 overflow-y-auto" 
                       style={{ 
                         fontSize: 'var(--text-sm)',
-                        color: rec.color === 'var(--color-background)' ? 'var(--color-foreground)' : 'var(--color-secondary-foreground)',
+                        color: 'var(--color-foreground)',
                         lineHeight: '1.6'
                       }}
                     >
                       "{rec.quote}"
                     </p>
 
-                    {/* Author info */}
+                    {/* Author info with photo */}
                     <div 
-                      className="pt-4 border-t-2 mt-auto"
+                      className="pt-4 border-t-2 mt-auto flex gap-3"
                       style={{ 
-                        borderColor: rec.color === 'var(--color-background)' ? 'var(--color-border)' : 'rgba(0,0,0,0.1)'
+                        borderColor: 'var(--color-border)'
                       }}
                     >
-                      <div 
-                        className="font-display mb-1" 
-                        style={{ 
-                          fontSize: 'var(--text-base)',
-                          color: rec.color === 'var(--color-background)' ? 'var(--color-foreground)' : 'var(--color-secondary-foreground)'
+                      {/* Person Photo */}
+                      <ImageWithFallback
+                        src={rec.photo}
+                        alt={rec.name}
+                        className="object-cover flex-shrink-0"
+                        style={{
+                          width: '60px',
+                          height: '60px',
+                          borderRadius: 'var(--radius-md)',
+                          border: '2px solid var(--color-border)',
                         }}
-                      >
-                        {rec.name}
-                      </div>
-                      <div 
-                        className="font-body opacity-80 mb-1" 
-                        style={{ 
-                          fontSize: 'var(--text-sm)',
-                          color: rec.color === 'var(--color-background)' ? 'var(--color-foreground)' : 'var(--color-secondary-foreground)'
-                        }}
-                      >
-                        {rec.title}
-                      </div>
-                      {rec.relationship && (
+                      />
+                      
+                      <div className="flex-1">
                         <div 
-                          className="font-handwritten mt-2" 
+                          className="font-cursive mb-1" 
                           style={{ 
-                            fontSize: 'var(--text-xs)',
-                            color: rec.color === 'var(--color-background)' ? 'var(--color-foreground)' : 'var(--color-secondary-foreground)',
-                            opacity: 0.7
+                            fontSize: 'var(--text-base)',
+                            color: 'var(--color-foreground)'
                           }}
                         >
-                          {rec.relationship}
+                          {rec.name}
                         </div>
-                      )}
+                        <div 
+                          className="font-body opacity-80 mb-1" 
+                          style={{ 
+                            fontSize: 'var(--text-sm)',
+                            color: 'var(--color-foreground)'
+                          }}
+                        >
+                          {rec.title}
+                        </div>
+                        {rec.relationship && (
+                          <div 
+                            className="font-handwritten mt-2" 
+                            style={{ 
+                              fontSize: 'var(--text-xs)',
+                              color: 'var(--color-foreground)',
+                              opacity: 0.7
+                            }}
+                          >
+                            {rec.relationship}
+                          </div>
+                        )}
+                      </div>
                     </div>
 
                     {/* Corner decoration */}
                     <div 
                       className="absolute bottom-2 right-2 w-2 h-2 rounded-full" 
                       style={{ 
-                        backgroundColor: rec.color === 'var(--color-background)' ? 'var(--color-foreground-alpha-20)' : 'rgba(0,0,0,0.15)'
+                        backgroundColor: 'var(--color-foreground-alpha-20)'
                       }} 
                     />
                   </motion.a>

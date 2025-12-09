@@ -1108,10 +1108,6 @@
     }
   }
 
-  .border-foreground {
-    border-color: var(--foreground);
-  }
-
   .border-primary {
     border-color: var(--primary);
   }
@@ -1268,6 +1264,10 @@
     .bg-white\/20 {
       background-color: color-mix(in oklab, var(--color-white) 20%, transparent);
     }
+  }
+
+  .object-contain {
+    object-fit: contain;
   }
 
   .object-cover {
