@@ -470,7 +470,7 @@ export function Hero() {
     return (
       <section
         id="hero"
-        className="pl-3 pr-6 pt-20 pb-12 overflow-auto"
+        className="pl-3 pr-6 pt-8 pb-12 overflow-auto"
         style={{ backgroundColor: "transparent" }}
       >
         <div className="max-w-full mx-auto space-y-4">
@@ -480,12 +480,20 @@ export function Hero() {
               className="bg-primary text-primary-foreground p-6 shadow-sm relative"
               style={{
                 borderRadius: "var(--radius-card)",
+                clipPath:
+                  "polygon(2% 0%, 98% 1%, 100% 4%, 98% 96%, 96% 100%, 4% 99%, 0% 95%, 1% 4%)",
                 filter: "var(--drop-shadow-lg)",
               }}
             >
-              <div className="flex flex-col items-center gap-4 mb-4">
+              <div className="flex flex-col items-center gap-6 mb-6">
                 <motion.div
-                  className="w-20 h-20 rounded-full bg-accent flex items-center justify-center overflow-hidden border-4 border-primary-foreground"
+                  className="bg-accent flex items-center justify-center overflow-hidden border-4 border-primary-foreground"
+                  style={{
+                    flexShrink: 0,
+                    width: "150px",
+                    height: "150px",
+                    borderRadius: "var(--radius-md)",
+                  }}
                   whileHover={{ scale: 1.05, rotate: 0 }}
                   transition={{
                     type: "spring",
@@ -493,24 +501,26 @@ export function Hero() {
                   }}
                 >
                   <ImageWithFallback
-                    src="https://images.unsplash.com/photo-1653732212701-b729f0b08330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBkZXZlbG9wZXIlMjBwb3J0cmFpdCUyMGhlYWRzaG90fGVufDF8fHx8MTc2NDYyOTc5MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    src={personalPhoto}
                     alt="Amlan Mukerjee - Developer Advocate"
                     className="w-full h-full object-cover"
+                    style={{ transform: "scale(1)" }}
                   />
                 </motion.div>
                 <div className="text-center">
                   <h1
                     className="text-primary-foreground mb-2"
                     style={{
-                      fontSize: "var(--text-xl)",
-                      lineHeight: "1.25",
+                      fontSize: "var(--text-2xl)",
+                      lineHeight: "1.2",
+                      fontWeight: "800",
                     }}
                   >
-                    Hi, I am Amlan
+                    Amlan Mukerjee
                   </h1>
                   <p
                     className="text-primary-foreground/90 font-body"
-                    style={{ fontSize: "var(--text-sm)" }}
+                    style={{ fontSize: "20px" }}
                   >
                     Product Designer & Developer
                   </p>
@@ -518,30 +528,25 @@ export function Hero() {
               </div>
 
               <p
-                className="text-primary-foreground/90 mb-4 font-body"
+                className="font-cursive mb-4 text-center md:text-left"
                 style={{
-                  fontSize: "var(--text-sm)",
-                  lineHeight: "1.6",
+                  fontSize: "24px",
+                  fontWeight: "normal",
+                  lineHeight: "1.4",
                 }}
               >
-                Welcome to my corner of the Internet. I'm a
-                Developer Advocate building tools, teaching
-                developers, and shaping the future of design-dev
-                collaboration at Figma.
-              </p>
-
-              <p
-                className="text-primary-foreground/80 mb-4 font-handwritten"
-                style={{ fontSize: "var(--text-sm)" }}
-              >
-                From founding ClarityUX (2.6K+ users) to leading
-                enterprise design systems, I bridge the gap
-                between designers and developers.
+                I'm a product designer & developer with a
+                passion for building products and growing
+                communities. Hoping to shape the future of
+                design-dev collab.
               </p>
 
               {/* Social Links */}
               <div className="flex flex-wrap gap-2 justify-center">
-                <motion.button
+                <motion.a
+                  href="https://github.com/amlan-ux"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-3 py-2 bg-primary-foreground text-primary flex items-center gap-2"
                   style={{ borderRadius: "var(--radius-lg)" }}
                   whileHover={{
@@ -560,14 +565,13 @@ export function Hero() {
                   <span style={{ fontSize: "var(--text-xs)" }}>
                     GitHub
                   </span>
-                </motion.button>
-                <motion.button
-                  className="px-3 py-2 flex items-center gap-2"
-                  style={{
-                    borderRadius: "var(--radius-lg)",
-                    backgroundColor: "var(--color-linkedin)",
-                    color: "var(--color-primary)",
-                  }}
+                </motion.a>
+                <motion.a
+                  href="https://www.linkedin.com/in/amlanmukerjee/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-2 bg-primary-foreground text-primary flex items-center gap-2"
+                  style={{ borderRadius: "var(--radius-lg)" }}
                   whileHover={{ scale: 1.05, rotate: 2, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -580,8 +584,9 @@ export function Hero() {
                   <span style={{ fontSize: "var(--text-xs)" }}>
                     LinkedIn
                   </span>
-                </motion.button>
-                <motion.button
+                </motion.a>
+                <motion.a
+                  href="mailto:amlan@clarityux.in"
                   className="px-3 py-2 bg-primary-foreground text-primary flex items-center gap-2"
                   style={{ borderRadius: "var(--radius-lg)" }}
                   whileHover={{
@@ -603,7 +608,7 @@ export function Hero() {
                   <span style={{ fontSize: "var(--text-xs)" }}>
                     Mail
                   </span>
-                </motion.button>
+                </motion.a>
               </div>
             </div>
           </div>
@@ -654,6 +659,131 @@ export function Hero() {
                   helps designers conduct UX research directly
                   in Figma.
                 </p>
+              )}
+            </motion.div>
+          </div>
+
+          {/* Aspire Card */}
+          <div className="w-full">
+            <motion.div
+              className="bg-card p-5 shadow-sm relative border-l-8 cursor-pointer"
+              onClick={() => toggleCard("education")}
+              style={{
+                borderRadius: "var(--radius-lg)",
+                borderLeftColor: "var(--color-accent)",
+                filter: "var(--drop-shadow-md)",
+              }}
+              whileHover={{ scale: 1.02, x: 5 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="flex justify-between items-start mb-2">
+                <h3
+                  className="text-foreground font-display"
+                  style={{ fontSize: "var(--text-base)" }}
+                >
+                  Aspire
+                </h3>
+                <span
+                  className="text-foreground/60 font-mono"
+                  style={{ fontSize: "var(--text-xs)" }}
+                >
+                  JAN 2022 - JUL 2023
+                </span>
+              </div>
+              <p
+                className="text-foreground/80 font-body"
+                style={{ fontSize: "var(--text-sm)" }}
+              >
+                Design Manager / Senior Product Designer
+              </p>
+              {expandedCard === "education" && (
+                <div
+                  className="text-foreground/70 font-body mt-3 pt-3 border-t border-border"
+                  style={{
+                    fontSize: "var(--text-sm)",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  <p>
+                    • Launched billing → 100+ signups in 90
+                    days, 70% engagement, 60% retention,
+                    $1.3M–$1.8M monthly NTV
+                  </p>
+                  <p>
+                    • 95%+ OKR completion on core fintech
+                    experiences
+                  </p>
+                  <p>
+                    • 30% faster workflows, 40% error reduction
+                    on dev alignment
+                  </p>
+                  <p>
+                    • OCR Invoice feature adoption 54%,
+                    satisfaction ↑ 28%
+                  </p>
+                </div>
+              )}
+            </motion.div>
+          </div>
+
+          {/* Travelopia Card */}
+          <div className="w-full">
+            <motion.div
+              className="bg-card p-5 shadow-sm relative border-l-8 cursor-pointer"
+              onClick={() => toggleCard("pagarme")}
+              style={{
+                borderRadius: "var(--radius-lg)",
+                borderLeftColor: "var(--color-chart-2)",
+                filter: "var(--drop-shadow-md)",
+              }}
+              whileHover={{ scale: 1.02, x: 5 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="flex justify-between items-start mb-2">
+                <h3
+                  className="text-foreground font-display"
+                  style={{ fontSize: "var(--text-base)" }}
+                >
+                  Travelopia
+                </h3>
+                <span
+                  className="text-foreground/60 font-mono"
+                  style={{ fontSize: "var(--text-xs)" }}
+                >
+                  OCT 2022 - OCT 2025
+                </span>
+              </div>
+              <p
+                className="text-foreground/80 font-body"
+                style={{ fontSize: "var(--text-sm)" }}
+              >
+                Design Manager
+              </p>
+              {expandedCard === "pagarme" && (
+                <div
+                  className="text-foreground/70 font-body mt-3 pt-3 border-t border-border"
+                  style={{
+                    fontSize: "var(--text-sm)",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  <p>
+                    • Led 8 designers across 12 luxury travel
+                    brands
+                  </p>
+                  <p>
+                    • Scaled developer collaboration and
+                    delivery using Figma MCP
+                  </p>
+                  <p>
+                    • $30M projected revenue uplift from funnel
+                    optimization
+                  </p>
+                  <p>
+                    • 82% faster delivery resolution via process
+                    optimisation
+                  </p>
+                </div>
               )}
             </motion.div>
           </div>
@@ -716,6 +846,55 @@ export function Hero() {
             </motion.div>
           </div>
 
+          {/* Indian Institute of Science Card */}
+          <div className="w-full">
+            <motion.div
+              className="bg-card p-5 shadow-sm relative border-l-8 cursor-pointer"
+              onClick={() => toggleCard("ncs")}
+              style={{
+                borderRadius: "var(--radius-lg)",
+                borderLeftColor: "var(--color-chart-5)",
+                filter: "var(--drop-shadow-md)",
+              }}
+              whileHover={{ scale: 1.02, x: 5 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="flex justify-between items-start mb-2">
+                <h3
+                  className="text-foreground font-display"
+                  style={{ fontSize: "var(--text-base)" }}
+                >
+                  Indian Institute of Science
+                </h3>
+                <span
+                  className="text-foreground/60 font-mono"
+                  style={{ fontSize: "var(--text-xs)" }}
+                >
+                  2015
+                </span>
+              </div>
+              <p
+                className="text-foreground/80 font-body"
+                style={{ fontSize: "var(--text-sm)" }}
+              >
+                M.Des, Product Design & Manufacturing
+              </p>
+              {expandedCard === "ncs" && (
+                <p
+                  className="text-foreground/70 font-body mt-3 pt-3 border-t border-border"
+                  style={{
+                    fontSize: "var(--text-sm)",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  A holistic approach that embraces design
+                  engineering, aesthetics, usability,
+                  manufactuiting and sustainability.
+                </p>
+              )}
+            </motion.div>
+          </div>
+
           {/* Location Badge */}
           <div className="flex justify-center pt-4">
             <motion.div
@@ -734,7 +913,7 @@ export function Hero() {
                   letterSpacing: "0.5px",
                 }}
               >
-                NYC
+                Bengaluru, IN
               </p>
             </motion.div>
           </div>
@@ -1106,7 +1285,7 @@ export function Hero() {
                   letterSpacing: "0.5px",
                 }}
               >
-                EMEA & APAC
+                EMEA, US & APAC
               </p>
             </div>
           </div>

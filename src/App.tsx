@@ -100,7 +100,7 @@ export default function App() {
             <Recommendations />
           </div>
 
-          <div id="contact-section" style={{ marginTop: '150px' }}>
+          <div id="contact-section" className="md:mt-[150px] mt-[50px]">
             <Contact />
           </div>
         </div>
