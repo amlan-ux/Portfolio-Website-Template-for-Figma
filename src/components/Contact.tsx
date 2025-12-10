@@ -211,18 +211,38 @@ From building products to running Vibe Coding workshops, I’ve seen how the rig
                 href={contact.href}
                 onClick={async (e) => {
                   if (contact.href.startsWith("mailto:")) {
+                    // prevent parent handlers but allow default navigation fallback later
+                    e.stopPropagation();
+
+                    const mail = "mailto:amlan@clarityux.in";
+
+                    // copy to clipboard (best-effort)
                     const success = await copyToClipboard("amlan@clarityux.in");
+
                     if (success) {
                       toast.success("Email copied to clipboard!", {
                         description: "Opening your mail client...",
                         duration: 3000,
                       });
                     } else {
-                      toast.error("Could not copy email", {
-                        description: "Please copy manually: amlan@clarityux.in",
-                        duration: 4000,
+                      toast.error("Could not copy email. Opening mail client...", {
+                        duration: 3500,
                       });
                     }
+
+                    // Give the toast a beat, then try multiple navigation fallbacks:
+                    // 1) try window.open (may be blocked), 2) fallback to location.href
+                    setTimeout(() => {
+                      try {
+                        const w = window.open(mail, "_blank", "noopener,noreferrer");
+                        if (!w) {
+                          // popup blocked — navigate current tab as last resort
+                          window.location.href = mail;
+                        }
+                      } catch {
+                        window.location.href = mail;
+                      }
+                    }, 80);
                   }
                 }}
                 target={

@@ -595,41 +595,54 @@ export function Hero() {
                 </motion.a>
                 <motion.a
                   href="mailto:amlan@clarityux.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-2 bg-primary-foreground text-primary flex items-center gap-2"
+                  style={{ borderRadius: "var(--radius-lg)" }}
+                  whileHover={{ scale: 1.05, rotate: -2, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={async (e) => {
+                    // prevent parent handlers but allow default navigation fallback later
+                    e.stopPropagation();
+
+                    const mail = "mailto:amlan@clarityux.in";
+
+                    // copy to clipboard (best-effort)
                     const success = await copyToClipboard("amlan@clarityux.in");
+
                     if (success) {
                       toast.success("Email copied to clipboard!", {
                         description: "Opening your mail client...",
                         duration: 3000,
                       });
                     } else {
-                      toast.error("Could not copy email", {
-                        description: "Please copy manually: amlan@clarityux.in",
-                        duration: 4000,
+                      toast.error("Could not copy email. Opening mail client...", {
+                        duration: 3500,
                       });
                     }
+
+                    // Give the toast a beat, then try multiple navigation fallbacks:
+                    // 1) try window.open (may be blocked), 2) fallback to location.href
+                    setTimeout(() => {
+                      try {
+                        const w = window.open(mail, "_blank", "noopener,noreferrer");
+                        if (!w) {
+                          // popup blocked — navigate current tab as last resort
+                          window.location.href = mail;
+                        }
+                      } catch {
+                        window.location.href = mail;
+                      }
+                    }, 80);
                   }}
-                  className="px-3 py-2 bg-primary-foreground text-primary flex items-center gap-2"
-                  style={{ borderRadius: "var(--radius-lg)" }}
-                  whileHover={{
-                    scale: 1.05,
-                    rotate: -2,
-                    y: -2,
-                  }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   <motion.div
                     whileHover={{ y: [0, -3, 0] }}
-                    transition={{
-                      duration: 0.4,
-                      repeat: Infinity,
-                    }}
+                    transition={{ duration: 0.4, repeat: Infinity }}
                   >
                     <Mail className="w-4 h-4" />
                   </motion.div>
-                  <span style={{ fontSize: "var(--text-xs)" }}>
-                    Mail
-                  </span>
+                  <span style={{ fontSize: "var(--text-xs)" }}>Mail</span>
                 </motion.a>
               </div>
             </div>
@@ -1087,45 +1100,54 @@ export function Hero() {
                 </motion.a>
                 <motion.a
                   href="mailto:amlan@clarityux.in"
-                  onMouseDown={(e) => {
-                    e.stopPropagation();
-                  }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 bg-primary-foreground text-primary flex items-center gap-2"
+                  style={{ borderRadius: "var(--radius-lg)" }}
+                  whileHover={{ scale: 1.05, rotate: -3, y: -3 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={async (e) => {
+                    // prevent parent handlers but allow default navigation fallback later
                     e.stopPropagation();
+
+                    const mail = "mailto:amlan@clarityux.in";
+
+                    // copy to clipboard (best-effort)
                     const success = await copyToClipboard("amlan@clarityux.in");
+
                     if (success) {
                       toast.success("Email copied to clipboard!", {
                         description: "Opening your mail client...",
                         duration: 3000,
                       });
                     } else {
-                      toast.error("Could not copy email", {
-                        description: "Please copy manually: amlan@clarityux.in",
-                        duration: 4000,
+                      toast.error("Could not copy email. Opening mail client...", {
+                        duration: 3500,
                       });
                     }
+
+                    // Give the toast a beat, then try multiple navigation fallbacks:
+                    // 1) try window.open (may be blocked), 2) fallback to location.href
+                    setTimeout(() => {
+                      try {
+                        const w = window.open(mail, "_blank", "noopener,noreferrer");
+                        if (!w) {
+                          // popup blocked — navigate current tab as last resort
+                          window.location.href = mail;
+                        }
+                      } catch {
+                        window.location.href = mail;
+                      }
+                    }, 80);
                   }}
-                  className="px-4 py-2 bg-primary-foreground text-primary flex items-center gap-2"
-                  style={{ borderRadius: "var(--radius-lg)" }}
-                  whileHover={{
-                    scale: 1.05,
-                    rotate: -3,
-                    y: -3,
-                  }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   <motion.div
                     whileHover={{ y: [0, -3, 0] }}
-                    transition={{
-                      duration: 0.4,
-                      repeat: Infinity,
-                    }}
+                    transition={{ duration: 0.4, repeat: Infinity }}
                   >
                     <Mail className="w-4 h-4" />
                   </motion.div>
-                  <span style={{ fontSize: "var(--text-sm)" }}>
-                    Mail
-                  </span>
+                  <span style={{ fontSize: "var(--text-sm)" }}>Mail</span>
                 </motion.a>
               </div>
             </div>
