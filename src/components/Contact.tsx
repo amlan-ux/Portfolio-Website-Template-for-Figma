@@ -14,6 +14,33 @@ import {
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { motion } from "motion/react";
 import buildTogetherImg from "figma:asset/8151441f4e92664c1d2aacb47abda9d76fd9316d.png";
+import { toast } from "sonner@2.0.3";
+
+// Helper function to copy text with fallback
+const copyToClipboard = async (text: string) => {
+  try {
+    // Try modern clipboard API first
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch (err) {
+    // Fallback for browsers that block clipboard API
+    try {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      const successful = document.execCommand("copy");
+      document.body.removeChild(textArea);
+      return successful;
+    } catch (fallbackErr) {
+      return false;
+    }
+  }
+};
 
 export function Contact() {
   return (
@@ -182,8 +209,25 @@ From building products to running Vibe Coding workshops, I’ve seen how the rig
               <motion.a
                 key={index}
                 href={contact.href}
+                onClick={async (e) => {
+                  if (contact.href.startsWith("mailto:")) {
+                    const success = await copyToClipboard("amlan@clarityux.in");
+                    if (success) {
+                      toast.success("Email copied to clipboard!", {
+                        description: "Opening your mail client...",
+                        duration: 3000,
+                      });
+                    } else {
+                      toast.error("Could not copy email", {
+                        description: "Please copy manually: amlan@clarityux.in",
+                        duration: 4000,
+                      });
+                    }
+                  }
+                }}
                 target={
-                  contact.href.startsWith("http")
+                  contact.href.startsWith("http") ||
+                  contact.href.startsWith("mailto:")
                     ? "_blank"
                     : undefined
                 }

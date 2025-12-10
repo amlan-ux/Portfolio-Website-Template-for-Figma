@@ -3,7 +3,6 @@ import newSportsPhoto from "figma:asset/58dab2a2ad11d00e0c0f2e03bbbef3b464d8e764
 import workshopPhoto from "figma:asset/2cd30ed1ead3a1ec2819d5bbd37a19f3bf67ccd9.png";
 import presentationPhoto from "figma:asset/47e7935ba419d03ab9ba79bb00335cf080ecd7a5.png";
 import image_5f0b87f44b5cd7080a272fec884a22e80d3b34a4 from "figma:asset/5f0b87f44b5cd7080a272fec884a22e80d3b34a4.png";
-import image_5f0b87f44b5cd7080a272fec884a22e80d3b34a4 from "figma:asset/5f0b87f44b5cd7080a272fec884a22e80d3b34a4.png";
 import image_381d3736b2a5019a83d72a3b5c13c5d25c427f9c from "figma:asset/381d3736b2a5019a83d72a3b5c13c5d25c427f9c.png";
 import {
   useState,
@@ -52,6 +51,33 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { CoffeeCard } from "./CoffeeCard";
 import { SportsCard } from "./SportsCard";
 import { SpotifyPlayer } from "./SpotifyPlayer";
+import { toast } from "sonner@2.0.3";
+
+// Helper function to copy text with fallback
+const copyToClipboard = async (text: string) => {
+  try {
+    // Try modern clipboard API first
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch (err) {
+    // Fallback for browsers that block clipboard API
+    try {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      const successful = document.execCommand("copy");
+      document.body.removeChild(textArea);
+      return successful;
+    } catch (fallbackErr) {
+      return false;
+    }
+  }
+};
 
 interface Position {
   x: number;
@@ -377,28 +403,10 @@ export function Hero() {
   }, [checkMobile]);
 
   // Calculate centered position for profile card (480px wide) on pegboard
-  const [profilePosition, setProfilePosition] = useState(() => {
-    // Pegboard container is max 1400px with 48px total padding (24px each side)
-    const containerWidth = Math.min(
-      window.innerWidth - 48,
-      1400,
-    );
-    const x = (containerWidth - 480) / 2;
-    return { x, y: 40 };
-  });
+  const [profilePosition, setProfilePosition] = useState({ x: 0, y: 40 });
 
   // Calculate scatter origin - center of the profile card
-  const [scatterOrigin, setScatterOrigin] = useState(() => {
-    const containerWidth = Math.min(
-      window.innerWidth - 48,
-      1400,
-    );
-    const x = (containerWidth - 480) / 2;
-    return {
-      x: x + 750, // way off to the right for dramatic explosion
-      y: 240, // center point behind the profile card
-    };
-  });
+  const [scatterOrigin, setScatterOrigin] = useState({ x: 750, y: 240 });
 
   // Update positions when container mounts and on resize
   const updatePositions = useCallback(() => {
@@ -587,6 +595,20 @@ export function Hero() {
                 </motion.a>
                 <motion.a
                   href="mailto:amlan@clarityux.in"
+                  onClick={async (e) => {
+                    const success = await copyToClipboard("amlan@clarityux.in");
+                    if (success) {
+                      toast.success("Email copied to clipboard!", {
+                        description: "Opening your mail client...",
+                        duration: 3000,
+                      });
+                    } else {
+                      toast.error("Could not copy email", {
+                        description: "Please copy manually: amlan@clarityux.in",
+                        duration: 4000,
+                      });
+                    }
+                  }}
                   className="px-3 py-2 bg-primary-foreground text-primary flex items-center gap-2"
                   style={{ borderRadius: "var(--radius-lg)" }}
                   whileHover={{
@@ -1065,6 +1087,24 @@ export function Hero() {
                 </motion.a>
                 <motion.a
                   href="mailto:amlan@clarityux.in"
+                  onMouseDown={(e) => {
+                    e.stopPropagation();
+                  }}
+                  onClick={async (e) => {
+                    e.stopPropagation();
+                    const success = await copyToClipboard("amlan@clarityux.in");
+                    if (success) {
+                      toast.success("Email copied to clipboard!", {
+                        description: "Opening your mail client...",
+                        duration: 3000,
+                      });
+                    } else {
+                      toast.error("Could not copy email", {
+                        description: "Please copy manually: amlan@clarityux.in",
+                        duration: 4000,
+                      });
+                    }
+                  }}
                   className="px-4 py-2 bg-primary-foreground text-primary flex items-center gap-2"
                   style={{ borderRadius: "var(--radius-lg)" }}
                   whileHover={{
